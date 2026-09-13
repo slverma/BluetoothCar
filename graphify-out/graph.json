@@ -1,0 +1,5097 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "bluetooth_connectivity_stack",
+        "label": "Bluetooth Connectivity & Permissions Stack",
+        "nodes": [
+          "package_react_native_ble_plx",
+          "package_react_native_bluetooth_classic",
+          "package_react_native_permissions"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "package.json"
+      },
+      {
+        "id": "cross_platform_app_bootstrap",
+        "label": "React Native Cross-Platform App Bootstrap",
+        "nodes": [
+          "index_registercomponent",
+          "bluetothcar_appdelegate_appdelegate",
+          "bluetoothcar_mainactivity_mainactivity"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "index.js"
+      },
+      {
+        "id": "react_native_toolchain_config",
+        "label": "React Native Toolchain Configuration",
+        "nodes": [
+          "jest_config_preset",
+          "babel_config_presets",
+          "metro_config_config",
+          "tsconfig_config",
+          "eslintrc_config"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "package.json"
+      },
+      {
+        "id": "dual_theme_control_duplication",
+        "label": "Vertical vs horizontal theme control-handler duplication",
+        "nodes": [
+          "src_btpanel_btpanel",
+          "components_horizontaltheme_horizontaltheme",
+          "contexts_settingscontext_settingsprovider"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "src/BTPanel.tsx"
+      },
+      {
+        "id": "unified_bluetooth_abstraction",
+        "label": "Unified BLE + Classic Bluetooth device abstraction",
+        "nodes": [
+          "contexts_bluetoothcontext_bluetoothprovider",
+          "ble_blemanager_blemanager",
+          "ble_classicbtmanager_classicbtmanager"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "src/contexts/BluetoothContext.tsx"
+      },
+      {
+        "id": "bonded_device_lookup_duplication",
+        "label": "Duplicate/dead bonded-device lookup implementations",
+        "nodes": [
+          "ble_bondeddevices_getbondeddevices",
+          "ble_classicbtmanager_getbondeddevices",
+          "ble_classicbtmanager_classicbluetoothmanager"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "src/ble/bondedDevices.ts"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "app.json",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L1",
+      "id": "app_json",
+      "community": 10,
+      "norm_label": "app.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L2",
+      "id": "bluetoothcar_app_name",
+      "community": 10,
+      "norm_label": "name"
+    },
+    {
+      "label": "slug",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L3",
+      "id": "bluetoothcar_app_slug",
+      "community": 10,
+      "norm_label": "slug"
+    },
+    {
+      "label": "displayName",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L4",
+      "id": "bluetoothcar_app_displayname",
+      "community": 10,
+      "norm_label": "displayname"
+    },
+    {
+      "label": "icon",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L5",
+      "id": "bluetoothcar_app_icon",
+      "community": 10,
+      "norm_label": "icon"
+    },
+    {
+      "label": "splash",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L6",
+      "id": "bluetoothcar_app_splash",
+      "community": 10,
+      "norm_label": "splash"
+    },
+    {
+      "label": "image",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": "L7",
+      "id": "bluetoothcar_app_splash_image",
+      "community": 10,
+      "norm_label": "image"
+    },
+    {
+      "label": "jest.config.js",
+      "file_type": "code",
+      "source_file": "jest.config.js",
+      "source_location": "L1",
+      "id": "jest_config_js",
+      "community": 17,
+      "norm_label": "jest.config.js"
+    },
+    {
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "index.js",
+      "source_location": "L1",
+      "id": "index_js",
+      "community": 10,
+      "norm_label": "index.js"
+    },
+    {
+      "label": "metro.config.js",
+      "file_type": "code",
+      "source_file": "metro.config.js",
+      "source_location": "L1",
+      "id": "metro_config_js",
+      "community": 16,
+      "norm_label": "metro.config.js"
+    },
+    {
+      "label": "{ getDefaultConfig, mergeConfig }",
+      "file_type": "code",
+      "source_file": "metro.config.js",
+      "source_location": "L1",
+      "id": "bluetoothcar_metro_config_getdefaultconfig_mergeconfig",
+      "community": 16,
+      "norm_label": "{ getdefaultconfig, mergeconfig }"
+    },
+    {
+      "label": "config",
+      "file_type": "code",
+      "source_file": "metro.config.js",
+      "source_location": "L9",
+      "id": "bluetoothcar_metro_config_config",
+      "community": 16,
+      "norm_label": "config"
+    },
+    {
+      "label": "babel.config.js",
+      "file_type": "code",
+      "source_file": "babel.config.js",
+      "source_location": "L1",
+      "id": "babel_config_js",
+      "community": 18,
+      "norm_label": "babel.config.js"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "id": "package_json",
+      "community": 1,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "id": "bluetoothcar_package_name",
+      "community": 1,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "id": "bluetoothcar_package_version",
+      "community": 1,
+      "norm_label": "version"
+    },
+    {
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "id": "bluetoothcar_package_private",
+      "community": 1,
+      "norm_label": "private"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "id": "bluetoothcar_package_scripts",
+      "community": 1,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "android",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "id": "bluetoothcar_package_scripts_android",
+      "community": 1,
+      "norm_label": "android"
+    },
+    {
+      "label": "clean",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "id": "bluetoothcar_package_scripts_clean",
+      "community": 1,
+      "norm_label": "clean"
+    },
+    {
+      "label": "build:release",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "id": "bluetoothcar_package_scripts_build_release",
+      "community": 1,
+      "norm_label": "build:release"
+    },
+    {
+      "label": "ios",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "id": "bluetoothcar_package_scripts_ios",
+      "community": 1,
+      "norm_label": "ios"
+    },
+    {
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "id": "bluetoothcar_package_scripts_lint",
+      "community": 1,
+      "norm_label": "lint"
+    },
+    {
+      "label": "start",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "id": "bluetoothcar_package_scripts_start",
+      "community": 1,
+      "norm_label": "start"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "id": "bluetoothcar_package_scripts_test",
+      "community": 1,
+      "norm_label": "test"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "id": "bluetoothcar_package_dependencies",
+      "community": 1,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "@react-native-async-storage/async-storage",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "id": "bluetoothcar_package_dependencies_react_native_async_storage_async_storage",
+      "community": 1,
+      "norm_label": "@react-native-async-storage/async-storage"
+    },
+    {
+      "label": "react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "id": "bluetoothcar_package_dependencies_react",
+      "community": 1,
+      "norm_label": "react"
+    },
+    {
+      "label": "react-native",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "id": "bluetoothcar_package_dependencies_react_native",
+      "community": 1,
+      "norm_label": "react-native"
+    },
+    {
+      "label": "react-native-ble-plx",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "id": "bluetoothcar_package_dependencies_react_native_ble_plx",
+      "community": 1,
+      "norm_label": "react-native-ble-plx"
+    },
+    {
+      "label": "react-native-bluetooth-classic",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "id": "bluetoothcar_package_dependencies_react_native_bluetooth_classic",
+      "community": 1,
+      "norm_label": "react-native-bluetooth-classic"
+    },
+    {
+      "label": "react-native-orientation-locker",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "id": "bluetoothcar_package_dependencies_react_native_orientation_locker",
+      "community": 1,
+      "norm_label": "react-native-orientation-locker"
+    },
+    {
+      "label": "react-native-permissions",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "id": "bluetoothcar_package_dependencies_react_native_permissions",
+      "community": 1,
+      "norm_label": "react-native-permissions"
+    },
+    {
+      "label": "react-native-safe-area-context",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "id": "bluetoothcar_package_dependencies_react_native_safe_area_context",
+      "community": 1,
+      "norm_label": "react-native-safe-area-context"
+    },
+    {
+      "label": "react-native-svg",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "id": "bluetoothcar_package_dependencies_react_native_svg",
+      "community": 1,
+      "norm_label": "react-native-svg"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "id": "bluetoothcar_package_devdependencies",
+      "community": 3,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "@babel/core",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "id": "bluetoothcar_package_devdependencies_babel_core",
+      "community": 3,
+      "norm_label": "@babel/core"
+    },
+    {
+      "label": "@babel/preset-env",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "id": "bluetoothcar_package_devdependencies_babel_preset_env",
+      "community": 3,
+      "norm_label": "@babel/preset-env"
+    },
+    {
+      "label": "@babel/runtime",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "id": "bluetoothcar_package_devdependencies_babel_runtime",
+      "community": 3,
+      "norm_label": "@babel/runtime"
+    },
+    {
+      "label": "@react-native-community/cli",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "id": "bluetoothcar_package_devdependencies_react_native_community_cli",
+      "community": 3,
+      "norm_label": "@react-native-community/cli"
+    },
+    {
+      "label": "@react-native-community/cli-platform-android",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "id": "bluetoothcar_package_devdependencies_react_native_community_cli_platform_android",
+      "community": 3,
+      "norm_label": "@react-native-community/cli-platform-android"
+    },
+    {
+      "label": "@react-native-community/cli-platform-ios",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "id": "bluetoothcar_package_devdependencies_react_native_community_cli_platform_ios",
+      "community": 3,
+      "norm_label": "@react-native-community/cli-platform-ios"
+    },
+    {
+      "label": "@react-native/babel-preset",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L32",
+      "id": "bluetoothcar_package_devdependencies_react_native_babel_preset",
+      "community": 3,
+      "norm_label": "@react-native/babel-preset"
+    },
+    {
+      "label": "@react-native/eslint-config",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L33",
+      "id": "bluetoothcar_package_devdependencies_react_native_eslint_config",
+      "community": 3,
+      "norm_label": "@react-native/eslint-config"
+    },
+    {
+      "label": "@react-native/metro-config",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "id": "bluetoothcar_package_devdependencies_react_native_metro_config",
+      "community": 3,
+      "norm_label": "@react-native/metro-config"
+    },
+    {
+      "label": "@react-native/typescript-config",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "id": "bluetoothcar_package_devdependencies_react_native_typescript_config",
+      "community": 3,
+      "norm_label": "@react-native/typescript-config"
+    },
+    {
+      "label": "@types/jest",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "id": "bluetoothcar_package_devdependencies_types_jest",
+      "community": 3,
+      "norm_label": "@types/jest"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "id": "bluetoothcar_package_devdependencies_types_react",
+      "community": 3,
+      "norm_label": "@types/react"
+    },
+    {
+      "label": "@types/react-test-renderer",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "id": "bluetoothcar_package_devdependencies_types_react_test_renderer",
+      "community": 3,
+      "norm_label": "@types/react-test-renderer"
+    },
+    {
+      "label": "eslint",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L39",
+      "id": "bluetoothcar_package_devdependencies_eslint",
+      "community": 3,
+      "norm_label": "eslint"
+    },
+    {
+      "label": "jest",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L40",
+      "id": "bluetoothcar_package_devdependencies_jest",
+      "community": 3,
+      "norm_label": "jest"
+    },
+    {
+      "label": "prettier",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L41",
+      "id": "bluetoothcar_package_devdependencies_prettier",
+      "community": 3,
+      "norm_label": "prettier"
+    },
+    {
+      "label": "react-native-svg-transformer",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "id": "bluetoothcar_package_devdependencies_react_native_svg_transformer",
+      "community": 3,
+      "norm_label": "react-native-svg-transformer"
+    },
+    {
+      "label": "react-test-renderer",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "id": "bluetoothcar_package_devdependencies_react_test_renderer",
+      "community": 3,
+      "norm_label": "react-test-renderer"
+    },
+    {
+      "label": "typescript",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "id": "bluetoothcar_package_devdependencies_typescript",
+      "community": 3,
+      "norm_label": "typescript"
+    },
+    {
+      "label": "engines",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "id": "bluetoothcar_package_engines",
+      "community": 1,
+      "norm_label": "engines"
+    },
+    {
+      "label": "node",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L47",
+      "id": "bluetoothcar_package_engines_node",
+      "community": 1,
+      "norm_label": "node"
+    },
+    {
+      "label": ".prettierrc.js",
+      "file_type": "code",
+      "source_file": ".prettierrc.js",
+      "source_location": "L1",
+      "id": "prettierrc_js",
+      "community": 19,
+      "norm_label": ".prettierrc.js"
+    },
+    {
+      "label": ".eslintrc.js",
+      "file_type": "code",
+      "source_file": ".eslintrc.js",
+      "source_location": "L1",
+      "id": "eslintrc_js",
+      "community": 20,
+      "norm_label": ".eslintrc.js"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1",
+      "id": "tsconfig_json",
+      "community": 13,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "id": "bluetoothcar_tsconfig_extends",
+      "community": 13,
+      "norm_label": "extends"
+    },
+    {
+      "label": "compilerOptions",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "id": "bluetoothcar_tsconfig_compileroptions",
+      "community": 13,
+      "norm_label": "compileroptions"
+    },
+    {
+      "label": "types",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "id": "bluetoothcar_tsconfig_compileroptions_types",
+      "community": 13,
+      "norm_label": "types"
+    },
+    {
+      "label": "include",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "id": "bluetoothcar_tsconfig_include",
+      "community": 13,
+      "norm_label": "include"
+    },
+    {
+      "label": "exclude",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L7",
+      "id": "bluetoothcar_tsconfig_exclude",
+      "community": 13,
+      "norm_label": "exclude"
+    },
+    {
+      "label": "AppDelegate.swift",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L1",
+      "id": "ios_bluetothcar_appdelegate_swift",
+      "community": 9,
+      "norm_label": "appdelegate.swift"
+    },
+    {
+      "label": "AppDelegate",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L6",
+      "id": "bluetothcar_appdelegate_appdelegate",
+      "community": 9,
+      "norm_label": "appdelegate"
+    },
+    {
+      "label": "UIResponder",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "uiresponder",
+      "community": 9,
+      "norm_label": "uiresponder"
+    },
+    {
+      "label": "UIApplicationDelegate",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "uiapplicationdelegate",
+      "community": 9,
+      "norm_label": "uiapplicationdelegate"
+    },
+    {
+      "label": ".application()",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L13",
+      "id": "bluetothcar_appdelegate_appdelegate_application",
+      "community": 9,
+      "norm_label": ".application()"
+    },
+    {
+      "label": "ReactNativeDelegate",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L36",
+      "id": "bluetothcar_appdelegate_reactnativedelegate",
+      "community": 9,
+      "norm_label": "reactnativedelegate"
+    },
+    {
+      "label": "RCTDefaultReactNativeFactoryDelegate",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "rctdefaultreactnativefactorydelegate",
+      "community": 9,
+      "norm_label": "rctdefaultreactnativefactorydelegate"
+    },
+    {
+      "label": ".sourceURL()",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L37",
+      "id": "bluetothcar_appdelegate_reactnativedelegate_sourceurl",
+      "community": 9,
+      "norm_label": ".sourceurl()"
+    },
+    {
+      "label": ".bundleURL()",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L41",
+      "id": "bluetothcar_appdelegate_reactnativedelegate_bundleurl",
+      "community": 9,
+      "norm_label": ".bundleurl()"
+    },
+    {
+      "label": "Contents.json",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L1",
+      "id": "ios_bluetothcar_images_xcassets_contents_json",
+      "community": 15,
+      "norm_label": "contents.json"
+    },
+    {
+      "label": "info",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L2",
+      "id": "images_xcassets_contents_info",
+      "community": 15,
+      "norm_label": "info"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L3",
+      "id": "images_xcassets_contents_info_version",
+      "community": 15,
+      "norm_label": "version"
+    },
+    {
+      "label": "author",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L4",
+      "id": "images_xcassets_contents_info_author",
+      "community": 15,
+      "norm_label": "author"
+    },
+    {
+      "label": "Contents.json",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L1",
+      "id": "ios_bluetothcar_images_xcassets_appicon_appiconset_contents_json",
+      "community": 14,
+      "norm_label": "contents.json"
+    },
+    {
+      "label": "images",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L2",
+      "id": "appicon_appiconset_contents_images",
+      "community": 14,
+      "norm_label": "images"
+    },
+    {
+      "label": "info",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L49",
+      "id": "appicon_appiconset_contents_info",
+      "community": 14,
+      "norm_label": "info"
+    },
+    {
+      "label": "author",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L50",
+      "id": "appicon_appiconset_contents_info_author",
+      "community": 14,
+      "norm_label": "author"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L51",
+      "id": "appicon_appiconset_contents_info_version",
+      "community": 14,
+      "norm_label": "version"
+    },
+    {
+      "label": "App.test.tsx",
+      "file_type": "code",
+      "source_file": "__tests__/App.test.tsx",
+      "source_location": "L1",
+      "id": "tests_app_test_tsx",
+      "community": 0,
+      "norm_label": "app.test.tsx"
+    },
+    {
+      "label": "build.gradle",
+      "file_type": "code",
+      "source_file": "android/build.gradle",
+      "source_location": "L1",
+      "id": "android_build_gradle",
+      "community": 21,
+      "norm_label": "build.gradle"
+    },
+    {
+      "label": "settings.gradle",
+      "file_type": "code",
+      "source_file": "android/settings.gradle",
+      "source_location": "L1",
+      "id": "android_settings_gradle",
+      "community": 22,
+      "norm_label": "settings.gradle"
+    },
+    {
+      "label": "build.gradle",
+      "file_type": "code",
+      "source_file": "android/app/build.gradle",
+      "source_location": "L1",
+      "id": "android_app_build_gradle",
+      "community": 23,
+      "norm_label": "build.gradle"
+    },
+    {
+      "label": "MainActivity.kt",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L1",
+      "id": "android_app_src_main_java_com_bluetoothcar_mainactivity_kt",
+      "community": 4,
+      "norm_label": "mainactivity.kt"
+    },
+    {
+      "label": "MainActivity",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L11",
+      "id": "bluetoothcar_mainactivity_mainactivity",
+      "community": 4,
+      "norm_label": "mainactivity"
+    },
+    {
+      "label": ".getMainComponentName()",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L17",
+      "id": "bluetoothcar_mainactivity_mainactivity_getmaincomponentname",
+      "community": 4,
+      "norm_label": ".getmaincomponentname()"
+    },
+    {
+      "label": ".createReactActivityDelegate()",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L23",
+      "id": "bluetoothcar_mainactivity_mainactivity_createreactactivitydelegate",
+      "community": 4,
+      "norm_label": ".createreactactivitydelegate()"
+    },
+    {
+      "label": ".onCreate()",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L29",
+      "id": "bluetoothcar_mainactivity_mainactivity_oncreate",
+      "community": 4,
+      "norm_label": ".oncreate()"
+    },
+    {
+      "label": "MainApplication.kt",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainApplication.kt",
+      "source_location": "L1",
+      "id": "android_app_src_main_java_com_bluetoothcar_mainapplication_kt",
+      "community": 4,
+      "norm_label": "mainapplication.kt"
+    },
+    {
+      "label": "MainApplication",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainApplication.kt",
+      "source_location": "L10",
+      "id": "bluetoothcar_mainapplication_mainapplication",
+      "community": 4,
+      "norm_label": "mainapplication"
+    },
+    {
+      "label": ".onCreate()",
+      "file_type": "code",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainApplication.kt",
+      "source_location": "L23",
+      "id": "bluetoothcar_mainapplication_mainapplication_oncreate",
+      "community": 4,
+      "norm_label": ".oncreate()"
+    },
+    {
+      "label": "App.tsx",
+      "file_type": "code",
+      "source_file": "src/App.tsx",
+      "source_location": "L1",
+      "id": "src_app_tsx",
+      "community": 0,
+      "norm_label": "app.tsx"
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "src/App.tsx",
+      "source_location": "L13",
+      "id": "src_app_app",
+      "community": 0,
+      "norm_label": "app()"
+    },
+    {
+      "label": "BTPanel.tsx",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L1",
+      "id": "src_btpanel_tsx",
+      "community": 0,
+      "norm_label": "btpanel.tsx"
+    },
+    {
+      "label": "BTPanel()",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L20",
+      "id": "src_btpanel_btpanel",
+      "community": 0,
+      "norm_label": "btpanel()"
+    },
+    {
+      "label": "styles",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L252",
+      "id": "src_btpanel_styles",
+      "community": 0,
+      "norm_label": "styles"
+    },
+    {
+      "label": "BTDevices.tsx",
+      "file_type": "code",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L1",
+      "id": "src_btdevices_tsx",
+      "community": 0,
+      "norm_label": "btdevices.tsx"
+    },
+    {
+      "label": "BTDevicesProps",
+      "file_type": "code",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L15",
+      "id": "src_btdevices_btdevicesprops",
+      "community": 0,
+      "norm_label": "btdevicesprops"
+    },
+    {
+      "label": "BTDevices()",
+      "file_type": "code",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L20",
+      "id": "src_btdevices_btdevices",
+      "community": 0,
+      "norm_label": "btdevices()"
+    },
+    {
+      "label": "styles",
+      "file_type": "code",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L154",
+      "id": "src_btdevices_styles",
+      "community": 0,
+      "norm_label": "styles"
+    },
+    {
+      "label": "svg.d.ts",
+      "file_type": "code",
+      "source_file": "src/types/svg.d.ts",
+      "source_location": "L1",
+      "id": "src_types_svg_d_ts",
+      "community": 24,
+      "norm_label": "svg.d.ts"
+    },
+    {
+      "label": "BluetoothContext.tsx",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L1",
+      "id": "src_contexts_bluetoothcontext_tsx",
+      "community": 2,
+      "norm_label": "bluetoothcontext.tsx"
+    },
+    {
+      "label": "UnifiedDevice",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L16",
+      "id": "contexts_bluetoothcontext_unifieddevice",
+      "community": 2,
+      "norm_label": "unifieddevice"
+    },
+    {
+      "label": "BluetoothContextType",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L26",
+      "id": "contexts_bluetoothcontext_bluetoothcontexttype",
+      "community": 2,
+      "norm_label": "bluetoothcontexttype"
+    },
+    {
+      "label": "BluetoothContext",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L40",
+      "id": "contexts_bluetoothcontext_bluetoothcontext",
+      "community": 2,
+      "norm_label": "bluetoothcontext"
+    },
+    {
+      "label": "BluetoothProvider()",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L44",
+      "id": "contexts_bluetoothcontext_bluetoothprovider",
+      "community": 0,
+      "norm_label": "bluetoothprovider()"
+    },
+    {
+      "label": "useBluetooth()",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L400",
+      "id": "contexts_bluetoothcontext_usebluetooth",
+      "community": 0,
+      "norm_label": "usebluetooth()"
+    },
+    {
+      "label": "SettingsContext.tsx",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L1",
+      "id": "src_contexts_settingscontext_tsx",
+      "community": 6,
+      "norm_label": "settingscontext.tsx"
+    },
+    {
+      "label": "ThemeType",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L11",
+      "id": "contexts_settingscontext_themetype",
+      "community": 6,
+      "norm_label": "themetype"
+    },
+    {
+      "label": "CommandSettings",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L13",
+      "id": "contexts_settingscontext_commandsettings",
+      "community": 6,
+      "norm_label": "commandsettings"
+    },
+    {
+      "label": "Settings",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L25",
+      "id": "contexts_settingscontext_settings",
+      "community": 6,
+      "norm_label": "settings"
+    },
+    {
+      "label": "DEFAULT_COMMANDS",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L30",
+      "id": "contexts_settingscontext_default_commands",
+      "community": 6,
+      "norm_label": "default_commands"
+    },
+    {
+      "label": "SettingsContextType",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L44",
+      "id": "contexts_settingscontext_settingscontexttype",
+      "community": 6,
+      "norm_label": "settingscontexttype"
+    },
+    {
+      "label": "SettingsContext",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L53",
+      "id": "contexts_settingscontext_settingscontext",
+      "community": 6,
+      "norm_label": "settingscontext"
+    },
+    {
+      "label": "SettingsProvider()",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L57",
+      "id": "contexts_settingscontext_settingsprovider",
+      "community": 0,
+      "norm_label": "settingsprovider()"
+    },
+    {
+      "label": "useSettings()",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L144",
+      "id": "contexts_settingscontext_usesettings",
+      "community": 0,
+      "norm_label": "usesettings()"
+    },
+    {
+      "label": "bleManager.ts",
+      "file_type": "code",
+      "source_file": "src/ble/bleManager.ts",
+      "source_location": "L1",
+      "id": "src_ble_blemanager_ts",
+      "community": 2,
+      "norm_label": "blemanager.ts"
+    },
+    {
+      "label": "bleManager",
+      "file_type": "code",
+      "source_file": "src/ble/bleManager.ts",
+      "source_location": "L3",
+      "id": "ble_blemanager_blemanager",
+      "community": 2,
+      "norm_label": "blemanager"
+    },
+    {
+      "label": "permissions.ts",
+      "file_type": "code",
+      "source_file": "src/ble/permissions.ts",
+      "source_location": "L1",
+      "id": "src_ble_permissions_ts",
+      "community": 8,
+      "norm_label": "permissions.ts"
+    },
+    {
+      "label": "requestBlePermissions()",
+      "file_type": "code",
+      "source_file": "src/ble/permissions.ts",
+      "source_location": "L3",
+      "id": "ble_permissions_requestblepermissions",
+      "community": 8,
+      "norm_label": "requestblepermissions()"
+    },
+    {
+      "label": "classicBTManager.ts",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L1",
+      "id": "src_ble_classicbtmanager_ts",
+      "community": 2,
+      "norm_label": "classicbtmanager.ts"
+    },
+    {
+      "label": "ClassicBluetoothManager",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L5",
+      "id": "ble_classicbtmanager_classicbluetoothmanager",
+      "community": 2,
+      "norm_label": "classicbluetoothmanager"
+    },
+    {
+      "label": ".isEnabled()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L6",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_isenabled",
+      "community": 2,
+      "norm_label": ".isenabled()"
+    },
+    {
+      "label": ".getBondedDevices()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L15",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_getbondeddevices",
+      "community": 2,
+      "norm_label": ".getbondeddevices()"
+    },
+    {
+      "label": ".startDiscovery()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L26",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_startdiscovery",
+      "community": 2,
+      "norm_label": ".startdiscovery()"
+    },
+    {
+      "label": ".cancelDiscovery()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L37",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_canceldiscovery",
+      "community": 2,
+      "norm_label": ".canceldiscovery()"
+    },
+    {
+      "label": ".connect()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L46",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_connect",
+      "community": 2,
+      "norm_label": ".connect()"
+    },
+    {
+      "label": ".disconnect()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L57",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_disconnect",
+      "community": 2,
+      "norm_label": ".disconnect()"
+    },
+    {
+      "label": ".write()",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L68",
+      "id": "ble_classicbtmanager_classicbluetoothmanager_write",
+      "community": 2,
+      "norm_label": ".write()"
+    },
+    {
+      "label": "classicBTManager",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L79",
+      "id": "ble_classicbtmanager_classicbtmanager",
+      "community": 2,
+      "norm_label": "classicbtmanager"
+    },
+    {
+      "label": "bondedDevices.ts",
+      "file_type": "code",
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": "L1",
+      "id": "src_ble_bondeddevices_ts",
+      "community": 8,
+      "norm_label": "bondeddevices.ts"
+    },
+    {
+      "label": "BondedDevice",
+      "file_type": "code",
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": "L3",
+      "id": "ble_bondeddevices_bondeddevice",
+      "community": 8,
+      "norm_label": "bondeddevice"
+    },
+    {
+      "label": "getBondedDevices()",
+      "file_type": "code",
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": "L9",
+      "id": "ble_bondeddevices_getbondeddevices",
+      "community": 8,
+      "norm_label": "getbondeddevices()"
+    },
+    {
+      "label": "HorizontalTheme.tsx",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L1",
+      "id": "src_components_horizontaltheme_tsx",
+      "community": 0,
+      "norm_label": "horizontaltheme.tsx"
+    },
+    {
+      "label": "HorizontalTheme()",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L13",
+      "id": "components_horizontaltheme_horizontaltheme",
+      "community": 0,
+      "norm_label": "horizontaltheme()"
+    },
+    {
+      "label": "styles",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L282",
+      "id": "components_horizontaltheme_styles",
+      "community": 0,
+      "norm_label": "styles"
+    },
+    {
+      "label": "DPad.tsx",
+      "file_type": "code",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L1",
+      "id": "src_components_dpad_tsx",
+      "community": 11,
+      "norm_label": "dpad.tsx"
+    },
+    {
+      "label": "Props",
+      "file_type": "code",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L4",
+      "id": "components_dpad_props",
+      "community": 11,
+      "norm_label": "props"
+    },
+    {
+      "label": "DPad()",
+      "file_type": "code",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L13",
+      "id": "components_dpad_dpad",
+      "community": 11,
+      "norm_label": "dpad()"
+    },
+    {
+      "label": "styles",
+      "file_type": "code",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L103",
+      "id": "components_dpad_styles",
+      "community": 11,
+      "norm_label": "styles"
+    },
+    {
+      "label": "SettingsModal.tsx",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L1",
+      "id": "src_components_settingsmodal_tsx",
+      "community": 6,
+      "norm_label": "settingsmodal.tsx"
+    },
+    {
+      "label": "SettingsModalProps",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L15",
+      "id": "components_settingsmodal_settingsmodalprops",
+      "community": 6,
+      "norm_label": "settingsmodalprops"
+    },
+    {
+      "label": "ThemeOption",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L20",
+      "id": "components_settingsmodal_themeoption",
+      "community": 6,
+      "norm_label": "themeoption"
+    },
+    {
+      "label": "THEME_OPTIONS",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L27",
+      "id": "components_settingsmodal_theme_options",
+      "community": 6,
+      "norm_label": "theme_options"
+    },
+    {
+      "label": "commandLabels",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L55",
+      "id": "components_settingsmodal_commandlabels",
+      "community": 6,
+      "norm_label": "commandlabels"
+    },
+    {
+      "label": "SettingsModal()",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L67",
+      "id": "components_settingsmodal_settingsmodal",
+      "community": 0,
+      "norm_label": "settingsmodal()"
+    },
+    {
+      "label": "styles",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L285",
+      "id": "components_settingsmodal_styles",
+      "community": 6,
+      "norm_label": "styles"
+    },
+    {
+      "label": "RefreshIcon.tsx",
+      "file_type": "code",
+      "source_file": "src/icons/RefreshIcon.tsx",
+      "source_location": "L1",
+      "id": "src_icons_refreshicon_tsx",
+      "community": 0,
+      "norm_label": "refreshicon.tsx"
+    },
+    {
+      "label": "RefreshIcon()",
+      "file_type": "code",
+      "source_file": "src/icons/RefreshIcon.tsx",
+      "source_location": "L4",
+      "id": "icons_refreshicon_refreshicon",
+      "community": 0,
+      "norm_label": "refreshicon()"
+    },
+    {
+      "label": "ArrowIcon.tsx",
+      "file_type": "code",
+      "source_file": "src/icons/ArrowIcon.tsx",
+      "source_location": "L1",
+      "id": "src_icons_arrowicon_tsx",
+      "community": 11,
+      "norm_label": "arrowicon.tsx"
+    },
+    {
+      "label": "ArrowIconProps",
+      "file_type": "code",
+      "source_file": "src/icons/ArrowIcon.tsx",
+      "source_location": "L4",
+      "id": "icons_arrowicon_arrowiconprops",
+      "community": 11,
+      "norm_label": "arrowiconprops"
+    },
+    {
+      "label": "ArrowIcon()",
+      "file_type": "code",
+      "source_file": "src/icons/ArrowIcon.tsx",
+      "source_location": "L9",
+      "id": "icons_arrowicon_arrowicon",
+      "community": 11,
+      "norm_label": "arrowicon()"
+    },
+    {
+      "label": "SettingsIcon.tsx",
+      "file_type": "code",
+      "source_file": "src/icons/SettingsIcon.tsx",
+      "source_location": "L1",
+      "id": "src_icons_settingsicon_tsx",
+      "community": 0,
+      "norm_label": "settingsicon.tsx"
+    },
+    {
+      "label": "SettingsIconProps",
+      "file_type": "code",
+      "source_file": "src/icons/SettingsIcon.tsx",
+      "source_location": "L4",
+      "id": "icons_settingsicon_settingsiconprops",
+      "community": 0,
+      "norm_label": "settingsiconprops"
+    },
+    {
+      "label": "SettingsIcon()",
+      "file_type": "code",
+      "source_file": "src/icons/SettingsIcon.tsx",
+      "source_location": "L9",
+      "id": "icons_settingsicon_settingsicon",
+      "community": 0,
+      "norm_label": "settingsicon()"
+    },
+    {
+      "label": "BluetoothIcon.tsx",
+      "file_type": "code",
+      "source_file": "src/icons/BluetoothIcon.tsx",
+      "source_location": "L1",
+      "id": "src_icons_bluetoothicon_tsx",
+      "community": 0,
+      "norm_label": "bluetoothicon.tsx"
+    },
+    {
+      "label": "BluetoothIcon()",
+      "file_type": "code",
+      "source_file": "src/icons/BluetoothIcon.tsx",
+      "source_location": "L3",
+      "id": "icons_bluetoothicon_bluetoothicon",
+      "community": 0,
+      "norm_label": "bluetoothicon()"
+    },
+    {
+      "label": "app.json (Bluetooth Car app manifest)",
+      "file_type": "code",
+      "source_file": "app.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "app_manifest",
+      "community": 4,
+      "norm_label": "app.json (bluetooth car app manifest)"
+    },
+    {
+      "label": "jest.config.js react-native preset",
+      "file_type": "code",
+      "source_file": "jest.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "jest_config_preset",
+      "community": 7,
+      "norm_label": "jest.config.js react-native preset"
+    },
+    {
+      "label": "index.js AppRegistry.registerComponent",
+      "file_type": "code",
+      "source_file": "index.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_registercomponent",
+      "community": 4,
+      "norm_label": "index.js appregistry.registercomponent"
+    },
+    {
+      "label": "metro.config.js Metro bundler config",
+      "file_type": "code",
+      "source_file": "metro.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "metro_config_config",
+      "community": 7,
+      "norm_label": "metro.config.js metro bundler config"
+    },
+    {
+      "label": "babel.config.js presets",
+      "file_type": "code",
+      "source_file": "babel.config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "babel_config_presets",
+      "community": 7,
+      "norm_label": "babel.config.js presets"
+    },
+    {
+      "label": "package.json project manifest",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_manifest",
+      "community": 7,
+      "norm_label": "package.json project manifest"
+    },
+    {
+      "label": "react-native-ble-plx (BLE) dependency",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_react_native_ble_plx",
+      "community": 7,
+      "norm_label": "react-native-ble-plx (ble) dependency"
+    },
+    {
+      "label": "react-native-bluetooth-classic dependency",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_react_native_bluetooth_classic",
+      "community": 7,
+      "norm_label": "react-native-bluetooth-classic dependency"
+    },
+    {
+      "label": "react-native-orientation-locker dependency",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_react_native_orientation_locker",
+      "community": 7,
+      "norm_label": "react-native-orientation-locker dependency"
+    },
+    {
+      "label": "react-native-permissions dependency",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_react_native_permissions",
+      "community": 7,
+      "norm_label": "react-native-permissions dependency"
+    },
+    {
+      "label": "@react-native-async-storage/async-storage dependency",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "package_async_storage",
+      "community": 7,
+      "norm_label": "@react-native-async-storage/async-storage dependency"
+    },
+    {
+      "label": ".prettierrc.js formatting config",
+      "file_type": "code",
+      "source_file": ".prettierrc.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "prettierrc_config",
+      "community": 25,
+      "norm_label": ".prettierrc.js formatting config"
+    },
+    {
+      "label": ".eslintrc.js lint config",
+      "file_type": "code",
+      "source_file": ".eslintrc.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "eslintrc_config",
+      "community": 7,
+      "norm_label": ".eslintrc.js lint config"
+    },
+    {
+      "label": "tsconfig.json TypeScript config",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "tsconfig_config",
+      "community": 7,
+      "norm_label": "tsconfig.json typescript config"
+    },
+    {
+      "label": "Images.xcassets catalog manifest",
+      "file_type": "image",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "images_xcassets_contents",
+      "community": 4,
+      "norm_label": "images.xcassets catalog manifest"
+    },
+    {
+      "label": "AppIcon.appiconset icon set manifest",
+      "file_type": "image",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "appicon_appiconset_contents",
+      "community": 4,
+      "norm_label": "appicon.appiconset icon set manifest"
+    },
+    {
+      "label": "App.test.tsx 'renders correctly' test",
+      "file_type": "code",
+      "source_file": "__tests__/App.test.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "tests_app_test_renderscorrectly",
+      "community": 7,
+      "norm_label": "app.test.tsx 'renders correctly' test"
+    },
+    {
+      "label": "gradlew POSIX start script",
+      "file_type": "code",
+      "source_file": "android/gradlew",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "android_gradlew_startscript",
+      "community": 4,
+      "norm_label": "gradlew posix start script"
+    },
+    {
+      "label": "android/build.gradle root buildscript",
+      "file_type": "code",
+      "source_file": "android/build.gradle",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "android_build_buildscript",
+      "community": 4,
+      "norm_label": "android/build.gradle root buildscript"
+    },
+    {
+      "label": "android/settings.gradle root project settings",
+      "file_type": "code",
+      "source_file": "android/settings.gradle",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "android_settings_rootproject",
+      "community": 4,
+      "norm_label": "android/settings.gradle root project settings"
+    },
+    {
+      "label": "android/app/build.gradle app module config",
+      "file_type": "code",
+      "source_file": "android/app/build.gradle",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "app_build_androidconfig",
+      "community": 4,
+      "norm_label": "android/app/build.gradle app module config"
+    },
+    {
+      "label": "BTPanel.handleStop",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handlestop",
+      "community": 5,
+      "norm_label": "btpanel.handlestop"
+    },
+    {
+      "label": "BTPanel.handleForwardPress",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handleforwardpress",
+      "community": 5,
+      "norm_label": "btpanel.handleforwardpress"
+    },
+    {
+      "label": "BTPanel.handleBackwardPress",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handlebackwardpress",
+      "community": 5,
+      "norm_label": "btpanel.handlebackwardpress"
+    },
+    {
+      "label": "BTPanel.handleLeftPress",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handleleftpress",
+      "community": 5,
+      "norm_label": "btpanel.handleleftpress"
+    },
+    {
+      "label": "BTPanel.handleRightPress",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handlerightpress",
+      "community": 5,
+      "norm_label": "btpanel.handlerightpress"
+    },
+    {
+      "label": "BTPanel.hornOn",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_hornon",
+      "community": 5,
+      "norm_label": "btpanel.hornon"
+    },
+    {
+      "label": "BTPanel.hornOff",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_hornoff",
+      "community": 5,
+      "norm_label": "btpanel.hornoff"
+    },
+    {
+      "label": "BTPanel.handleLightToggle",
+      "file_type": "code",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btpanel_handlelighttoggle",
+      "community": 5,
+      "norm_label": "btpanel.handlelighttoggle"
+    },
+    {
+      "label": "BTDevices.handleDevicePress",
+      "file_type": "code",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_btdevices_handledevicepress",
+      "community": 2,
+      "norm_label": "btdevices.handledevicepress"
+    },
+    {
+      "label": "SVG module type declaration",
+      "file_type": "code",
+      "source_file": "src/types/svg.d.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "types_svg_d_svgmodule",
+      "community": 0,
+      "norm_label": "svg module type declaration"
+    },
+    {
+      "label": "BluetoothProvider.startScan",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_bluetoothcontext_startscan",
+      "community": 8,
+      "norm_label": "bluetoothprovider.startscan"
+    },
+    {
+      "label": "BluetoothProvider.stopScan",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_bluetoothcontext_stopscan",
+      "community": 2,
+      "norm_label": "bluetoothprovider.stopscan"
+    },
+    {
+      "label": "BluetoothProvider.connectToDevice",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_bluetoothcontext_connecttodevice",
+      "community": 2,
+      "norm_label": "bluetoothprovider.connecttodevice"
+    },
+    {
+      "label": "BluetoothProvider.disconnectDevice",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_bluetoothcontext_disconnectdevice",
+      "community": 2,
+      "norm_label": "bluetoothprovider.disconnectdevice"
+    },
+    {
+      "label": "BluetoothProvider.sendData",
+      "file_type": "code",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_bluetoothcontext_senddata",
+      "community": 5,
+      "norm_label": "bluetoothprovider.senddata"
+    },
+    {
+      "label": "SettingsProvider.loadSettings",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_settingscontext_loadsettings",
+      "community": 0,
+      "norm_label": "settingsprovider.loadsettings"
+    },
+    {
+      "label": "SettingsProvider.saveSettings",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_settingscontext_savesettings",
+      "community": 12,
+      "norm_label": "settingsprovider.savesettings"
+    },
+    {
+      "label": "SettingsProvider.updateCommand",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_settingscontext_updatecommand",
+      "community": 12,
+      "norm_label": "settingsprovider.updatecommand"
+    },
+    {
+      "label": "SettingsProvider.updateTheme",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_settingscontext_updatetheme",
+      "community": 12,
+      "norm_label": "settingsprovider.updatetheme"
+    },
+    {
+      "label": "SettingsProvider.resetToDefaults",
+      "file_type": "code",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contexts_settingscontext_resettodefaults",
+      "community": 12,
+      "norm_label": "settingsprovider.resettodefaults"
+    },
+    {
+      "label": "ClassicBluetoothManager.getBondedDevices",
+      "file_type": "code",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "ble_classicbtmanager_getbondeddevices",
+      "community": 8,
+      "norm_label": "classicbluetoothmanager.getbondeddevices"
+    },
+    {
+      "label": "HorizontalTheme.handleStop",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_horizontaltheme_handlestop",
+      "community": 5,
+      "norm_label": "horizontaltheme.handlestop"
+    },
+    {
+      "label": "HorizontalTheme.handleLightToggle",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_horizontaltheme_handlelighttoggle",
+      "community": 5,
+      "norm_label": "horizontaltheme.handlelighttoggle"
+    },
+    {
+      "label": "HorizontalTheme.hornOn",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_horizontaltheme_hornon",
+      "community": 5,
+      "norm_label": "horizontaltheme.hornon"
+    },
+    {
+      "label": "HorizontalTheme.hornOff",
+      "file_type": "code",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_horizontaltheme_hornoff",
+      "community": 5,
+      "norm_label": "horizontaltheme.hornoff"
+    },
+    {
+      "label": "DPad.handlePress",
+      "file_type": "code",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_dpad_handlepress",
+      "community": 5,
+      "norm_label": "dpad.handlepress"
+    },
+    {
+      "label": "SettingsModal.handleSave",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_settingsmodal_handlesave",
+      "community": 12,
+      "norm_label": "settingsmodal.handlesave"
+    },
+    {
+      "label": "SettingsModal.handleReset",
+      "file_type": "code",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "components_settingsmodal_handlereset",
+      "community": 12,
+      "norm_label": "settingsmodal.handlereset"
+    },
+    {
+      "label": "Bluetooth Car Controller (README)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_bluetooth_car_controller",
+      "community": 0,
+      "norm_label": "bluetooth car controller (readme)"
+    },
+    {
+      "label": "Settings Feature documentation",
+      "file_type": "document",
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "docs_settings_feature_settings_feature",
+      "community": 0,
+      "norm_label": "settings feature documentation"
+    },
+    {
+      "label": "Custom Command Configuration (design rationale)",
+      "file_type": "rationale",
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Custom, user-editable commands let the app support different Bluetooth device/firmware protocols (not all RC car receivers use the same command characters), give users control to adapt the app to their specific hardware, and are persisted via AsyncStorage so configuration survives restarts. Documented benefits: flexibility, user control, ease of use, persistence, and safety (reset/validation).",
+      "id": "docs_settings_feature_custom_command_configuration",
+      "community": 6,
+      "norm_label": "custom command configuration (design rationale)"
+    },
+    {
+      "label": "BluetoothCar Privacy Policy",
+      "file_type": "document",
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "docs_index_privacy_policy",
+      "community": 8,
+      "norm_label": "bluetoothcar privacy policy"
+    },
+    {
+      "label": "Bluetooth Permission (rationale)",
+      "file_type": "rationale",
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Bluetooth permission is requested solely to discover, connect, and communicate with nearby Bluetooth-enabled devices such as the Bluetooth-controlled car; the app does not collect, store, or share any personal information via this permission.",
+      "id": "docs_index_bluetooth_permission",
+      "community": 8,
+      "norm_label": "bluetooth permission (rationale)"
+    },
+    {
+      "label": "Location Permission (rationale)",
+      "file_type": "rationale",
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Location permission is requested only because the Android OS requires it to perform Bluetooth device scans; the app does not access, collect, track, or store any location data despite holding this permission.",
+      "id": "docs_index_location_permission",
+      "community": 8,
+      "norm_label": "location permission (rationale)"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "app_json",
+      "target": "bluetoothcar_app_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_json",
+      "target": "bluetoothcar_app_slug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_json",
+      "target": "bluetoothcar_app_displayname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_json",
+      "target": "bluetoothcar_app_icon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_json",
+      "target": "bluetoothcar_app_splash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "index_js",
+      "target": "app_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "index_js",
+      "target": "bluetoothcar_app_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "bluetoothcar_app_splash",
+      "target": "bluetoothcar_app_splash_image",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "index.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "index_js",
+      "target": "src_app_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "metro.config.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "metro_config_js",
+      "target": "bluetoothcar_metro_config_getdefaultconfig_mergeconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "metro.config.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "metro_config_js",
+      "target": "bluetoothcar_metro_config_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_private",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "bluetoothcar_package_engines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_android",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_clean",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_build_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_ios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_lint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_start",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_scripts",
+      "target": "bluetoothcar_package_scripts_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_async_storage_async_storage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_ble_plx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_bluetooth_classic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_orientation_locker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_safe_area_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_dependencies",
+      "target": "bluetoothcar_package_dependencies_react_native_svg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_babel_core",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_babel_preset_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_babel_runtime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_community_cli",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_community_cli_platform_android",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_community_cli_platform_ios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_babel_preset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_eslint_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_metro_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_typescript_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_types_jest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_types_react",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_types_react_test_renderer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_jest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_prettier",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_native_svg_transformer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_react_test_renderer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_devdependencies",
+      "target": "bluetoothcar_package_devdependencies_typescript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "bluetoothcar_package_engines",
+      "target": "bluetoothcar_package_engines_node",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "bluetoothcar_tsconfig_extends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "bluetoothcar_tsconfig_compileroptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "bluetoothcar_tsconfig_include",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "bluetoothcar_tsconfig_exclude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "bluetoothcar_tsconfig_compileroptions",
+      "target": "bluetoothcar_tsconfig_compileroptions_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ios_bluetothcar_appdelegate_swift",
+      "target": "bluetothcar_appdelegate_appdelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "ios_bluetothcar_appdelegate_swift",
+      "target": "bluetothcar_appdelegate_reactnativedelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate",
+      "target": "uiresponder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate",
+      "target": "uiapplicationdelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate",
+      "target": "bluetothcar_appdelegate_appdelegate_application",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate",
+      "target": "app_manifest"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate",
+      "target": "bluetothcar_appdelegate_reactnativedelegate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_appdelegate_application",
+      "target": "bluetothcar_appdelegate_reactnativedelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_reactnativedelegate",
+      "target": "rctdefaultreactnativefactorydelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_reactnativedelegate",
+      "target": "bluetothcar_appdelegate_reactnativedelegate_sourceurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_reactnativedelegate",
+      "target": "bluetothcar_appdelegate_reactnativedelegate_bundleurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/AppDelegate.swift",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "bluetothcar_appdelegate_reactnativedelegate_sourceurl",
+      "target": "bluetothcar_appdelegate_reactnativedelegate_bundleurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "ios_bluetothcar_images_xcassets_contents_json",
+      "target": "images_xcassets_contents_info",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "images_xcassets_contents_info",
+      "target": "images_xcassets_contents_info_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/Contents.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "images_xcassets_contents_info",
+      "target": "images_xcassets_contents_info_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "ios_bluetothcar_images_xcassets_appicon_appiconset_contents_json",
+      "target": "appicon_appiconset_contents_images",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "ios_bluetothcar_images_xcassets_appicon_appiconset_contents_json",
+      "target": "appicon_appiconset_contents_info",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "appicon_appiconset_contents_info",
+      "target": "appicon_appiconset_contents_info_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "appicon_appiconset_contents_info",
+      "target": "appicon_appiconset_contents_info_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/App.test.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_app_test_tsx",
+      "target": "src_app_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "android_app_src_main_java_com_bluetoothcar_mainactivity_kt",
+      "target": "bluetoothcar_mainactivity_mainactivity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "bluetoothcar_mainactivity_mainactivity",
+      "target": "bluetoothcar_mainactivity_mainactivity_getmaincomponentname",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bluetoothcar_mainactivity_mainactivity",
+      "target": "bluetoothcar_mainactivity_mainactivity_createreactactivitydelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bluetoothcar_mainactivity_mainactivity",
+      "target": "bluetoothcar_mainactivity_mainactivity_oncreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainActivity.kt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "bluetoothcar_mainactivity_mainactivity",
+      "target": "app_manifest"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "android/app/build.gradle",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "app_build_androidconfig",
+      "target": "bluetoothcar_mainactivity_mainactivity"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainApplication.kt",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "android_app_src_main_java_com_bluetoothcar_mainapplication_kt",
+      "target": "bluetoothcar_mainapplication_mainapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/java/com/bluetoothcar/MainApplication.kt",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bluetoothcar_mainapplication_mainapplication",
+      "target": "bluetoothcar_mainapplication_mainapplication_oncreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "android/app/build.gradle",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "app_build_androidconfig",
+      "target": "bluetoothcar_mainapplication_mainapplication"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "src_btpanel_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "src_contexts_bluetoothcontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "contexts_bluetoothcontext_bluetoothprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "src_contexts_settingscontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "contexts_settingscontext_settingsprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_app_tsx",
+      "target": "src_app_app",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/App.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_app_app",
+      "target": "contexts_settingscontext_settingsprovider"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/App.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_app_app",
+      "target": "contexts_bluetoothcontext_bluetoothprovider"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/App.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_app_app",
+      "target": "src_btpanel_btpanel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_settings_feature",
+      "target": "src_app_app"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "src_app_app"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_btdevices_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_icons_bluetoothicon_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_icons_refreshicon_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_icons_settingsicon_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_contexts_bluetoothcontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "contexts_bluetoothcontext_usebluetooth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_contexts_settingscontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "contexts_settingscontext_usesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_components_dpad_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_components_settingsmodal_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_components_horizontaltheme_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_btpanel_btpanel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTPanel.tsx",
+      "source_location": "L252",
+      "weight": 1.0,
+      "source": "src_btpanel_tsx",
+      "target": "src_btpanel_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "contexts_bluetoothcontext_usebluetooth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "contexts_settingscontext_usesettings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "src_btdevices_btdevices"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "components_settingsmodal_settingsmodal"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "components_horizontaltheme_horizontaltheme"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "components_dpad_dpad"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "icons_settingsicon_settingsicon"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "icons_refreshicon_refreshicon"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_btpanel",
+      "target": "icons_bluetoothicon_bluetoothicon"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_settings_feature",
+      "target": "src_btpanel_btpanel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "src_btpanel_btpanel"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "src_contexts_bluetoothcontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "contexts_bluetoothcontext_usebluetooth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "src_icons_refreshicon_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "src_btdevices_btdevicesprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "src_btdevices_btdevices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/BTDevices.tsx",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "src_btdevices_tsx",
+      "target": "src_btdevices_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btdevices_btdevices",
+      "target": "contexts_bluetoothcontext_usebluetooth"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btdevices_btdevices",
+      "target": "icons_refreshicon_refreshicon"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btdevices_btdevices",
+      "target": "contexts_bluetoothcontext_startscan"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "src_btdevices_btdevices"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "src_ble_blemanager_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "ble_blemanager_blemanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "src_ble_classicbtmanager_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "ble_classicbtmanager_classicbtmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "src_ble_permissions_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "ble_permissions_requestblepermissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "contexts_bluetoothcontext_unifieddevice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "contexts_bluetoothcontext_bluetoothcontexttype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "contexts_bluetoothcontext_bluetoothcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "contexts_bluetoothcontext_bluetoothprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": "L400",
+      "weight": 1.0,
+      "source": "src_contexts_bluetoothcontext_tsx",
+      "target": "contexts_bluetoothcontext_usebluetooth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "src_contexts_bluetoothcontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "contexts_bluetoothcontext_bluetoothprovider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "contexts_bluetoothcontext_usebluetooth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_horizontaltheme",
+      "target": "contexts_bluetoothcontext_usebluetooth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_themetype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_commandsettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_settings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_default_commands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_settingscontexttype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_settingscontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_settingsprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "src_contexts_settingscontext_tsx",
+      "target": "contexts_settingscontext_usesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "src_contexts_settingscontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "src_contexts_settingscontext_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "contexts_settingscontext_themetype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_custom_command_configuration",
+      "target": "contexts_settingscontext_commandsettings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_settingscontext_settingsprovider",
+      "target": "contexts_settingscontext_loadsettings"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_settings_feature",
+      "target": "contexts_settingscontext_settingsprovider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "contexts_settingscontext_usesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "contexts_settingscontext_usesettings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_horizontaltheme",
+      "target": "contexts_settingscontext_usesettings"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_settingsmodal_settingsmodal",
+      "target": "contexts_settingscontext_usesettings"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/bleManager.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_ble_blemanager_ts",
+      "target": "ble_blemanager_blemanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_startscan",
+      "target": "ble_blemanager_blemanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_stopscan",
+      "target": "ble_blemanager_blemanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_connecttodevice",
+      "target": "ble_blemanager_blemanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_disconnectdevice",
+      "target": "ble_blemanager_blemanager"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "ble_blemanager_blemanager"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/permissions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_ble_permissions_ts",
+      "target": "ble_permissions_requestblepermissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_startscan",
+      "target": "ble_permissions_requestblepermissions"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "ble_permissions_requestblepermissions"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_index_bluetooth_permission",
+      "target": "ble_permissions_requestblepermissions"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_index_location_permission",
+      "target": "ble_permissions_requestblepermissions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_ble_classicbtmanager_ts",
+      "target": "ble_classicbtmanager_classicbluetoothmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "src_ble_classicbtmanager_ts",
+      "target": "ble_classicbtmanager_classicbtmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_isenabled",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_getbondeddevices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_startdiscovery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_canceldiscovery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_connect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_disconnect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbluetoothmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager_write",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/ble/classicBTManager.ts",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ble_classicbtmanager_classicbtmanager",
+      "target": "ble_classicbtmanager_classicbluetoothmanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_stopscan",
+      "target": "ble_classicbtmanager_classicbtmanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_connecttodevice",
+      "target": "ble_classicbtmanager_classicbtmanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_disconnectdevice",
+      "target": "ble_classicbtmanager_classicbtmanager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_senddata",
+      "target": "ble_classicbtmanager_classicbtmanager"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "ble_classicbtmanager_classicbtmanager"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_ble_bondeddevices_ts",
+      "target": "ble_bondeddevices_bondeddevice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_ble_bondeddevices_ts",
+      "target": "ble_bondeddevices_getbondeddevices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/ble/bondedDevices.ts",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "ble_bondeddevices_getbondeddevices",
+      "target": "ble_classicbtmanager_getbondeddevices"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "ble_bondeddevices_getbondeddevices"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "components_horizontaltheme_horizontaltheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "src_components_horizontaltheme_tsx",
+      "target": "components_horizontaltheme_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_dpad_tsx",
+      "target": "src_icons_arrowicon_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_dpad_tsx",
+      "target": "components_dpad_props",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_dpad_tsx",
+      "target": "components_dpad_dpad",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/DPad.tsx",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_components_dpad_tsx",
+      "target": "components_dpad_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_dpad",
+      "target": "icons_arrowicon_arrowicon"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bluetooth_car_controller",
+      "target": "components_dpad_dpad"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_settingsmodalprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_themeoption",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_theme_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_commandlabels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_settingsmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": "L285",
+      "weight": 1.0,
+      "source": "src_components_settingsmodal_tsx",
+      "target": "components_settingsmodal_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_settings_feature",
+      "target": "components_settingsmodal_settingsmodal"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/RefreshIcon.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_icons_refreshicon_tsx",
+      "target": "icons_refreshicon_refreshicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/icons/RefreshIcon.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "icons_refreshicon_refreshicon",
+      "target": "types_svg_d_svgmodule"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/ArrowIcon.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_icons_arrowicon_tsx",
+      "target": "icons_arrowicon_arrowiconprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/ArrowIcon.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_icons_arrowicon_tsx",
+      "target": "icons_arrowicon_arrowicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/SettingsIcon.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_icons_settingsicon_tsx",
+      "target": "icons_settingsicon_settingsiconprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/SettingsIcon.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_icons_settingsicon_tsx",
+      "target": "icons_settingsicon_settingsicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SETTINGS_FEATURE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_settings_feature_settings_feature",
+      "target": "icons_settingsicon_settingsicon"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/icons/BluetoothIcon.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_icons_bluetoothicon_tsx",
+      "target": "icons_bluetoothicon_bluetoothicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/icons/BluetoothIcon.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "icons_bluetoothicon_bluetoothicon",
+      "target": "types_svg_d_svgmodule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_registercomponent",
+      "target": "app_manifest"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "android/settings.gradle",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "android_settings_rootproject",
+      "target": "app_manifest"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "appicon_appiconset_contents",
+      "target": "app_manifest"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "jest.config.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "jest_config_preset",
+      "target": "tests_app_test_renderscorrectly"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "jest_config_preset"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "metro.config.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "metro_config_config",
+      "target": "babel_config_presets"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "metro_config_config"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "babel_config_presets"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "tsconfig_config"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "eslintrc_config"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "package_react_native_ble_plx"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "package_react_native_bluetooth_classic"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "package_react_native_orientation_locker"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "package_react_native_permissions"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_manifest",
+      "target": "package_async_storage"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "package.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "package_react_native_ble_plx",
+      "target": "package_react_native_bluetooth_classic"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "appicon_appiconset_contents",
+      "target": "images_xcassets_contents"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "android/gradlew",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "android_gradlew_startscript",
+      "target": "android_build_buildscript"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "android/build.gradle",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "android_build_buildscript",
+      "target": "app_build_androidconfig"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlestop",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_handlepress",
+      "target": "src_btpanel_handlestop"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlestop",
+      "target": "components_horizontaltheme_handlestop"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handleforwardpress",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_handlepress",
+      "target": "src_btpanel_handleforwardpress"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlebackwardpress",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_handlepress",
+      "target": "src_btpanel_handlebackwardpress"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handleleftpress",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_handlepress",
+      "target": "src_btpanel_handleleftpress"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlerightpress",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/components/DPad.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_dpad_handlepress",
+      "target": "src_btpanel_handlerightpress"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_hornon",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_hornon",
+      "target": "components_horizontaltheme_hornon"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_hornoff",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_hornoff",
+      "target": "components_horizontaltheme_hornoff"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlelighttoggle",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/BTPanel.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btpanel_handlelighttoggle",
+      "target": "components_horizontaltheme_handlelighttoggle"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btdevices_handledevicepress",
+      "target": "contexts_bluetoothcontext_connecttodevice"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/BTDevices.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "src_btdevices_handledevicepress",
+      "target": "contexts_bluetoothcontext_disconnectdevice"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_bluetoothcontext_startscan",
+      "target": "ble_classicbtmanager_getbondeddevices"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_handlestop",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_handlelighttoggle",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_hornon",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/HorizontalTheme.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_horizontaltheme_hornoff",
+      "target": "contexts_bluetoothcontext_senddata"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_settingscontext_updatecommand",
+      "target": "contexts_settingscontext_savesettings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_settingscontext_updatetheme",
+      "target": "contexts_settingscontext_savesettings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/SettingsContext.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contexts_settingscontext_resettodefaults",
+      "target": "contexts_settingscontext_savesettings"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_settingsmodal_handlesave",
+      "target": "contexts_settingscontext_updatecommand"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_settingsmodal_handlesave",
+      "target": "contexts_settingscontext_updatetheme"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/SettingsModal.tsx",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "components_settingsmodal_handlereset",
+      "target": "contexts_settingscontext_resettodefaults"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_index_privacy_policy",
+      "target": "docs_index_bluetooth_permission"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_index_privacy_policy",
+      "target": "docs_index_location_permission"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "bluetooth_connectivity_stack",
+      "label": "Bluetooth Connectivity & Permissions Stack",
+      "nodes": [
+        "package_react_native_ble_plx",
+        "package_react_native_bluetooth_classic",
+        "package_react_native_permissions"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "package.json"
+    },
+    {
+      "id": "cross_platform_app_bootstrap",
+      "label": "React Native Cross-Platform App Bootstrap",
+      "nodes": [
+        "index_registercomponent",
+        "bluetothcar_appdelegate_appdelegate",
+        "bluetoothcar_mainactivity_mainactivity"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.js"
+    },
+    {
+      "id": "react_native_toolchain_config",
+      "label": "React Native Toolchain Configuration",
+      "nodes": [
+        "jest_config_preset",
+        "babel_config_presets",
+        "metro_config_config",
+        "tsconfig_config",
+        "eslintrc_config"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "package.json"
+    },
+    {
+      "id": "dual_theme_control_duplication",
+      "label": "Vertical vs horizontal theme control-handler duplication",
+      "nodes": [
+        "src_btpanel_btpanel",
+        "components_horizontaltheme_horizontaltheme",
+        "contexts_settingscontext_settingsprovider"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "src/BTPanel.tsx"
+    },
+    {
+      "id": "unified_bluetooth_abstraction",
+      "label": "Unified BLE + Classic Bluetooth device abstraction",
+      "nodes": [
+        "contexts_bluetoothcontext_bluetoothprovider",
+        "ble_blemanager_blemanager",
+        "ble_classicbtmanager_classicbtmanager"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/contexts/BluetoothContext.tsx"
+    },
+    {
+      "id": "bonded_device_lookup_duplication",
+      "label": "Duplicate/dead bonded-device lookup implementations",
+      "nodes": [
+        "ble_bondeddevices_getbondeddevices",
+        "ble_classicbtmanager_getbondeddevices",
+        "ble_classicbtmanager_classicbluetoothmanager"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "src/ble/bondedDevices.ts"
+    }
+  ],
+  "built_at_commit": "d4f861ff66f4d08839c7188dcf4cd7952235ff1a"
+}

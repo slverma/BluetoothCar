@@ -1,0 +1,382 @@
+{
+  "/Users/shambhu/Projects/personal/bluetoothcar/app.json": {
+    "mtime": 1768903683.374154,
+    "ast_hash": "4c3fda359d992f69b74401e8ffb0b68a",
+    "semantic_hash": "4c3fda359d992f69b74401e8ffb0b68a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/jest.config.js": {
+    "mtime": 1767375816.4484537,
+    "ast_hash": "a9c6693468bde78faf7c5579af254976",
+    "semantic_hash": "a9c6693468bde78faf7c5579af254976"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/index.js": {
+    "mtime": 1767378047.9731512,
+    "ast_hash": "ba738387b2ef6ceb46ed449b383d210d",
+    "semantic_hash": "ba738387b2ef6ceb46ed449b383d210d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/metro.config.js": {
+    "mtime": 1767420077.0832582,
+    "ast_hash": "337e6041eb09bdf9672d7c96a42b02c4",
+    "semantic_hash": "337e6041eb09bdf9672d7c96a42b02c4"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/babel.config.js": {
+    "mtime": 1767375816.4482195,
+    "ast_hash": "21de76e1dac94cc04e86bc7eca16e321",
+    "semantic_hash": "21de76e1dac94cc04e86bc7eca16e321"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/package.json": {
+    "mtime": 1770124550.4946208,
+    "ast_hash": "20403d5f377aeee3cbb68f64465fa707",
+    "semantic_hash": "20403d5f377aeee3cbb68f64465fa707"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/.prettierrc.js": {
+    "mtime": 1767375816.4475827,
+    "ast_hash": "0b97c6e850da3e507a09b2ba38b291e2",
+    "semantic_hash": "0b97c6e850da3e507a09b2ba38b291e2"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/.eslintrc.js": {
+    "mtime": 1767375816.4486053,
+    "ast_hash": "7f94ddd2e552f8e276acd02c97f652ae",
+    "semantic_hash": "7f94ddd2e552f8e276acd02c97f652ae"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/tsconfig.json": {
+    "mtime": 1767375816.448481,
+    "ast_hash": "bc303906978573e692e157c5338297c9",
+    "semantic_hash": "bc303906978573e692e157c5338297c9"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/ios/bluetothcar/AppDelegate.swift": {
+    "mtime": 1767620222.0739098,
+    "ast_hash": "de9a1de9af5a66d92e4e2971f2e64cdb",
+    "semantic_hash": "de9a1de9af5a66d92e4e2971f2e64cdb"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/ios/bluetothcar/Images.xcassets/Contents.json": {
+    "mtime": 1767375816.4482934,
+    "ast_hash": "ed9be3f0744043070dbefb43e20bfb75",
+    "semantic_hash": "ed9be3f0744043070dbefb43e20bfb75"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/ios/bluetothcar/Images.xcassets/AppIcon.appiconset/Contents.json": {
+    "mtime": 1767375816.4485016,
+    "ast_hash": "e168fc63a8e2444657c26fc5b29ddc7a",
+    "semantic_hash": "e168fc63a8e2444657c26fc5b29ddc7a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/__tests__/App.test.tsx": {
+    "mtime": 1767377506.0965567,
+    "ast_hash": "9adb9f33f7f01cd63aeb6e1f978503a3",
+    "semantic_hash": "9adb9f33f7f01cd63aeb6e1f978503a3"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/gradlew": {
+    "mtime": 1767375816.448153,
+    "ast_hash": "266606e78242737ef3da02a80ea0564d",
+    "semantic_hash": "266606e78242737ef3da02a80ea0564d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/build.gradle": {
+    "mtime": 1767375816.4480612,
+    "ast_hash": "357800d8b3d10bdb8746d2c869a3f39a",
+    "semantic_hash": "357800d8b3d10bdb8746d2c869a3f39a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/settings.gradle": {
+    "mtime": 1768903683.373825,
+    "ast_hash": "14003b6246d9e65ff1382063204e0555",
+    "semantic_hash": "14003b6246d9e65ff1382063204e0555"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/build.gradle": {
+    "mtime": 1770126119.0258322,
+    "ast_hash": "0fbd9ec3b6c37dbb53c4f5116a1ff81d",
+    "semantic_hash": "0fbd9ec3b6c37dbb53c4f5116a1ff81d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/java/com/bluetoothcar/MainActivity.kt": {
+    "mtime": 1768997790.5931246,
+    "ast_hash": "5dd876413f4bdf2a96d8894d22683d57",
+    "semantic_hash": "5dd876413f4bdf2a96d8894d22683d57"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/java/com/bluetoothcar/MainApplication.kt": {
+    "mtime": 1768903683.3734846,
+    "ast_hash": "d9556ab8af821246ab73620d6d5635dc",
+    "semantic_hash": "d9556ab8af821246ab73620d6d5635dc"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/App.tsx": {
+    "mtime": 1768906779.2052865,
+    "ast_hash": "e5c37e19dd58c055a4887f023077169c",
+    "semantic_hash": "e5c37e19dd58c055a4887f023077169c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/BTPanel.tsx": {
+    "mtime": 1770124550.494924,
+    "ast_hash": "5a02d1380e8e60f37ec342e7ef4f04d1",
+    "semantic_hash": "5a02d1380e8e60f37ec342e7ef4f04d1"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/BTDevices.tsx": {
+    "mtime": 1767425823.4100523,
+    "ast_hash": "00d0cc717fdc09176932a350287c773a",
+    "semantic_hash": "00d0cc717fdc09176932a350287c773a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/types/svg.d.ts": {
+    "mtime": 1767420077.0958457,
+    "ast_hash": "0a3a545b7540b5c357295ff9f4d53126",
+    "semantic_hash": "0a3a545b7540b5c357295ff9f4d53126"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/contexts/BluetoothContext.tsx": {
+    "mtime": 1768997790.5949874,
+    "ast_hash": "1f6415f2bb867f3f8d7040663bc974f3",
+    "semantic_hash": "1f6415f2bb867f3f8d7040663bc974f3"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/contexts/SettingsContext.tsx": {
+    "mtime": 1770124550.4956362,
+    "ast_hash": "b7cb77fbf056798117a7eb5c151ffb6b",
+    "semantic_hash": "b7cb77fbf056798117a7eb5c151ffb6b"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/ble/bleManager.ts": {
+    "mtime": 1767377327.4664383,
+    "ast_hash": "a9b144cfc1a164597c0fa719c2e61e08",
+    "semantic_hash": "a9b144cfc1a164597c0fa719c2e61e08"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/ble/permissions.ts": {
+    "mtime": 1767409215.395177,
+    "ast_hash": "3d50032266c3b66394d9f077c1486c6c",
+    "semantic_hash": "3d50032266c3b66394d9f077c1486c6c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/ble/classicBTManager.ts": {
+    "mtime": 1767425566.0394113,
+    "ast_hash": "7f4242d93cf2a7a733f7ca3844af00e6",
+    "semantic_hash": "7f4242d93cf2a7a733f7ca3844af00e6"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/ble/bondedDevices.ts": {
+    "mtime": 1767425278.2608552,
+    "ast_hash": "d79d329232ebdc5af799a35c479ec23f",
+    "semantic_hash": "d79d329232ebdc5af799a35c479ec23f"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/components/HorizontalTheme.tsx": {
+    "mtime": 1770124550.4951403,
+    "ast_hash": "a1c4fced74a1635c23512266b92e3cad",
+    "semantic_hash": "a1c4fced74a1635c23512266b92e3cad"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/components/DPad.tsx": {
+    "mtime": 1767433535.345991,
+    "ast_hash": "e384f08ac75d335fa995435433073f81",
+    "semantic_hash": "e384f08ac75d335fa995435433073f81"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/components/SettingsModal.tsx": {
+    "mtime": 1770124550.495412,
+    "ast_hash": "55cc41d2e5a5722554b52fc0ea826ff4",
+    "semantic_hash": "55cc41d2e5a5722554b52fc0ea826ff4"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/RefreshIcon.tsx": {
+    "mtime": 1767420077.0907261,
+    "ast_hash": "f4ca12d53ab14fd44f0636df7f65af64",
+    "semantic_hash": "f4ca12d53ab14fd44f0636df7f65af64"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/ArrowIcon.tsx": {
+    "mtime": 1767431517.4932718,
+    "ast_hash": "467682dc503539a20925cf8f50ebc8a4",
+    "semantic_hash": "467682dc503539a20925cf8f50ebc8a4"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/SettingsIcon.tsx": {
+    "mtime": 1768906779.2061424,
+    "ast_hash": "26868d167cd4011315b5635ab394b803",
+    "semantic_hash": "26868d167cd4011315b5635ab394b803"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/BluetoothIcon.tsx": {
+    "mtime": 1767420927.661501,
+    "ast_hash": "4e6eb3b7335f734431e467367c89bc6d",
+    "semantic_hash": "4e6eb3b7335f734431e467367c89bc6d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/README.md": {
+    "mtime": 1778052195.5596159,
+    "ast_hash": "5e003e5e8fe5712110d46e821b57d9b4",
+    "semantic_hash": "5e003e5e8fe5712110d46e821b57d9b4"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/docs/index.html": {
+    "mtime": 1771696864.7213495,
+    "ast_hash": "e9b5790ae74726e4a133b813f278b00a",
+    "semantic_hash": "e9b5790ae74726e4a133b813f278b00a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/docs/SETTINGS_FEATURE.md": {
+    "mtime": 1768906779.2039275,
+    "ast_hash": "337d0ee616b09be890f9f2f20192272f",
+    "semantic_hash": "337d0ee616b09be890f9f2f20192272f"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/Screenshot.jpg": {
+    "mtime": 1767440030.7766848,
+    "ast_hash": "89fdb8afcee132f52e5d66bcde4a4c96",
+    "semantic_hash": "89fdb8afcee132f52e5d66bcde4a4c96"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/1024.png": {
+    "mtime": 1767437261.4100144,
+    "ast_hash": "2613cbf4e858e48aead07764cc2cda97",
+    "semantic_hash": "2613cbf4e858e48aead07764cc2cda97"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/play_store_512.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "2e513d1ec564720c053e8ce6d11af2b2",
+    "semantic_hash": "2e513d1ec564720c053e8ce6d11af2b2"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher_monochrome.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "2acb061de0c4bf792ba22dda9ad6afa2",
+    "semantic_hash": "2acb061de0c4bf792ba22dda9ad6afa2"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher_adaptive_fore.png": {
+    "mtime": 1767437240.3940496,
+    "ast_hash": "32f7ddeae551a0970b4987c886318f3c",
+    "semantic_hash": "32f7ddeae551a0970b4987c886318f3c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "2acb061de0c4bf792ba22dda9ad6afa2",
+    "semantic_hash": "2acb061de0c4bf792ba22dda9ad6afa2"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher.png": {
+    "mtime": 1767437240.3936455,
+    "ast_hash": "832e56a618b7b5ee39de1488ef506d3c",
+    "semantic_hash": "832e56a618b7b5ee39de1488ef506d3c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher_adaptive_back.png": {
+    "mtime": 1767437240.393838,
+    "ast_hash": "c1d27e46f70e20de5924501f0ba002a5",
+    "semantic_hash": "c1d27e46f70e20de5924501f0ba002a5"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-mdpi/ic_launcher_background.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "6798d394d697b59298619b71e0a7000b",
+    "semantic_hash": "6798d394d697b59298619b71e0a7000b"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher_monochrome.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "ce4edf83549966b63f9550e6c25e530d",
+    "semantic_hash": "ce4edf83549966b63f9550e6c25e530d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher_adaptive_fore.png": {
+    "mtime": 1767437240.3910935,
+    "ast_hash": "d66daab5f166bb88d473d5c8cde0b6c7",
+    "semantic_hash": "d66daab5f166bb88d473d5c8cde0b6c7"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "ce4edf83549966b63f9550e6c25e530d",
+    "semantic_hash": "ce4edf83549966b63f9550e6c25e530d"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
+    "mtime": 1767437240.3904777,
+    "ast_hash": "812157d12ead99409c5b38afc219bd96",
+    "semantic_hash": "812157d12ead99409c5b38afc219bd96"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher_adaptive_back.png": {
+    "mtime": 1767437240.39077,
+    "ast_hash": "bd40b041ad526e5e320e9f492682de40",
+    "semantic_hash": "bd40b041ad526e5e320e9f492682de40"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-hdpi/ic_launcher_background.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "37424a23a468806ea7d1cc251659b9b5",
+    "semantic_hash": "37424a23a468806ea7d1cc251659b9b5"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_monochrome.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "a2d68612b1be1ed6f3ff3f127c472464",
+    "semantic_hash": "a2d68612b1be1ed6f3ff3f127c472464"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_adaptive_fore.png": {
+    "mtime": 1767437240.4014032,
+    "ast_hash": "fef158c725b633153e9a65874e64eed1",
+    "semantic_hash": "fef158c725b633153e9a65874e64eed1"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "a2d68612b1be1ed6f3ff3f127c472464",
+    "semantic_hash": "a2d68612b1be1ed6f3ff3f127c472464"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png": {
+    "mtime": 1767437240.4009542,
+    "ast_hash": "844e308b4bf0f9e757f9ed37bce5c72f",
+    "semantic_hash": "844e308b4bf0f9e757f9ed37bce5c72f"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_adaptive_back.png": {
+    "mtime": 1767437240.401168,
+    "ast_hash": "865e89cb09d26c63f2050b45a67619f1",
+    "semantic_hash": "865e89cb09d26c63f2050b45a67619f1"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "ab780ff3e1cf5d27cd34e3b39e9740f8",
+    "semantic_hash": "ab780ff3e1cf5d27cd34e3b39e9740f8"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_monochrome.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "d7e428fd321607a750fb45074b914cc8",
+    "semantic_hash": "d7e428fd321607a750fb45074b914cc8"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_adaptive_fore.png": {
+    "mtime": 1767437240.3992257,
+    "ast_hash": "8dd7944d8b19b7957b49af5eaf13cf2c",
+    "semantic_hash": "8dd7944d8b19b7957b49af5eaf13cf2c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "d7e428fd321607a750fb45074b914cc8",
+    "semantic_hash": "d7e428fd321607a750fb45074b914cc8"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png": {
+    "mtime": 1767437240.3988311,
+    "ast_hash": "9ec06181aa47d466ff33b31340d68a73",
+    "semantic_hash": "9ec06181aa47d466ff33b31340d68a73"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_adaptive_back.png": {
+    "mtime": 1767437240.3990169,
+    "ast_hash": "8d822c2bf9da6beb4a6fd9b478e2d589",
+    "semantic_hash": "8d822c2bf9da6beb4a6fd9b478e2d589"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_background.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "38e82ed6475843b89f61f942b672a06a",
+    "semantic_hash": "38e82ed6475843b89f61f942b672a06a"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher_monochrome.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "875e4aa1b090a7939c2540325fd5c808",
+    "semantic_hash": "875e4aa1b090a7939c2540325fd5c808"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher_adaptive_fore.png": {
+    "mtime": 1767437240.3968656,
+    "ast_hash": "5f1333eeb143fbb4c1a54fe679d6ccd4",
+    "semantic_hash": "5f1333eeb143fbb4c1a54fe679d6ccd4"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "875e4aa1b090a7939c2540325fd5c808",
+    "semantic_hash": "875e4aa1b090a7939c2540325fd5c808"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png": {
+    "mtime": 1767437240.396356,
+    "ast_hash": "7ad32a8dbcf0dfd6c87bff523760be4c",
+    "semantic_hash": "7ad32a8dbcf0dfd6c87bff523760be4c"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher_adaptive_back.png": {
+    "mtime": 1767437240.3966472,
+    "ast_hash": "f24fa9bdd3b9e88d9d982139019a0ead",
+    "semantic_hash": "f24fa9bdd3b9e88d9d982139019a0ead"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/android/app/src/main/res/mipmap-xhdpi/ic_launcher_background.png": {
+    "mtime": 1767418000.0,
+    "ast_hash": "f09fab8953eecd25a7962053d744120b",
+    "semantic_hash": "f09fab8953eecd25a7962053d744120b"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/assets/1024.png": {
+    "mtime": 1767437393.7261105,
+    "ast_hash": "2613cbf4e858e48aead07764cc2cda97",
+    "semantic_hash": "2613cbf4e858e48aead07764cc2cda97"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/assets/play_store_512.png": {
+    "mtime": 1767437393.7144372,
+    "ast_hash": "15c3081c011fdc4c4e900641dfa87611",
+    "semantic_hash": "15c3081c011fdc4c4e900641dfa87611"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/refresh-icon.svg": {
+    "mtime": 1767419768.3398237,
+    "ast_hash": "a013a99b58ad848030b499a4371d2910",
+    "semantic_hash": "a013a99b58ad848030b499a4371d2910"
+  },
+  "/Users/shambhu/Projects/personal/bluetoothcar/src/icons/bluetooth-icon.svg": {
+    "mtime": 1767420927.6447532,
+    "ast_hash": "fedfbc40e6579ef013232b39d7c50afa",
+    "semantic_hash": "fedfbc40e6579ef013232b39d7c50afa"
+  }
+}
