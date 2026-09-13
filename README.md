@@ -39,27 +39,27 @@ Before you begin, ensure you have completed the [React Native - Set Up Your Envi
 ### Installation
 
 1. Clone the repository:
-   \`\`\`sh
+
+   ```sh
    git clone <repository-url>
    cd bluetooth-car
-   \`\`\`
+   ```
 
 2. Install dependencies:
-   \`\`\`sh
+
+   ```sh
    npm install
-
-# OR
-
-yarn install
-\`\`\`
+   # OR
+   yarn install
+   ```
 
 3. For iOS, install CocoaPods dependencies:
-   \`\`\`sh
+   ```sh
    cd ios
    bundle install
    bundle exec pod install
    cd ..
-   \`\`\`
+   ```
 
 ### Running the App
 
@@ -69,16 +69,12 @@ First, you will need to run **Metro**, the JavaScript build tool for React Nativ
 
 To start the Metro dev server, run the following command from the root of your React Native project:
 
-\`\`\`sh
-
+```sh
 # Using npm
-
 npm start
-
 # OR using Yarn
-
 yarn start
-\`\`\`
+```
 
 #### Step 2: Build and run your app
 
@@ -86,29 +82,21 @@ With Metro running, open a new terminal window/pane from the root of your React 
 
 ##### Android
 
-\`\`\`sh
-
+```sh
 # Using npm
-
 npm run android
-
 # OR using Yarn
-
 yarn android
-\`\`\`
+```
 
 ##### iOS
 
-\`\`\`sh
-
+```sh
 # Using npm
-
 npm run ios
-
 # OR using Yarn
-
 yarn ios
-\`\`\`
+```
 
 If everything is set up correctly, you should see the app running in your Android Emulator, iOS Simulator, or on your connected device.
 
@@ -118,10 +106,10 @@ This app requires the following permissions:
 
 ### Android
 
-- \`BLUETOOTH_SCAN\`
-- \`BLUETOOTH_CONNECT\`
-- \`BLUETOOTH_ADVERTISE\`
-- \`ACCESS_FINE_LOCATION\` (required for Bluetooth scanning on Android)
+- `BLUETOOTH_SCAN`
+- `BLUETOOTH_CONNECT`
+- `BLUETOOTH_ADVERTISE`
+- `ACCESS_FINE_LOCATION` (required for Bluetooth scanning on Android)
 
 ### iOS
 
@@ -129,7 +117,7 @@ This app requires the following permissions:
 
 ## Project Structure
 
-\`\`\`
+```
 src/
 ├── App.tsx # Main app component
 ├── BTDevices.tsx # Device list screen
@@ -144,7 +132,7 @@ src/
 ├── contexts/
 │ └── BluetoothContext.tsx # Bluetooth state management
 └── icons/ # Custom SVG icons
-\`\`\`
+```
 
 ## How to Use
 
@@ -161,7 +149,7 @@ src/
 
 ## Development
 
-To modify the app, edit the files in the \`src/\` directory. The app uses Fast Refresh, so your changes will be reflected immediately.
+To modify the app, edit the files in the `src/` directory. The app uses Fast Refresh, so your changes will be reflected immediately.
 
 ## Troubleshooting
 
@@ -173,220 +161,221 @@ If you're having issues getting the app to work:
 - Try restarting the Metro bundler and rebuilding the app
 - For more general React Native issues, see the [React Native Troubleshooting](https://reactnative.dev/docs/troubleshooting) page
 
-## Useful Commands
+# Useful Commands
 
-### Emulator Commands
+## Emulator Commands
 
-#### List Available Emulators
+### List Available Emulators
 
-\`\`\`sh
+```sh
 emulator -list-avds
-\`\`\`
+```
 
-#### Start Emulator
+### Start Emulator
 
-\`\`\`sh
-
+```sh
 # Start a specific emulator
-
 emulator -avd <emulator_name>
-
 # Start emulator with writable system
-
 emulator -avd <emulator_name> -writable-system
-
 # Start emulator with specific port
-
 emulator -avd <emulator_name> -port 5556
-\`\`\`
+```
 
-#### Kill Emulator
+### Kill Emulator
 
-\`\`\`sh
-
+```sh
 # Kill all emulators
-
 adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done
-\`\`\`
+```
 
-### ADB (Android Debug Bridge) Commands
+## ADB (Android Debug Bridge) Commands
 
-#### Device Management
+### Device Management
 
-\`\`\`sh
-
+```sh
 # List connected devices
-
 adb devices
-
 # Connect to device over TCP/IP
-
 adb tcpip 5555
 adb connect <device_ip>:5555
-
 # Restart ADB server
-
 adb kill-server
 adb start-server
-
 # Get device info
-
 adb shell getprop ro.product.model
 adb shell getprop ro.build.version.release
-\`\`\`
+```
 
-#### App Management
+### App Management
 
-\`\`\`sh
-
+```sh
 # Install APK
-
 adb install path/to/app.apk
 adb install -r path/to/app.apk # Reinstall (keep data)
-
 # Uninstall app
-
 adb uninstall com.package.name
-
 # List installed packages
-
 adb shell pm list packages
 adb shell pm list packages | grep <app_name>
-
 # Clear app data
-
 adb shell pm clear com.package.name
-
 # Start app
-
 adb shell am start -n com.package.name/.MainActivity
-
 # Force stop app
-
 adb shell am force-stop com.package.name
-\`\`\`
+```
 
-#### Logs and Debugging
+## Logs and Debugging
 
-\`\`\`sh
+### View logs
 
-# View logs
-
+```sh
 adb logcat
+```
 
-# Clear logs
+### Clear logs
 
+```sh
 adb logcat -c
+```
 
-# Filter logs by tag
+### Filter logs by tag
 
+```sh
 adb logcat -s ReactNativeJS
+```
 
-# Filter logs by app
+### Filter logs by app
 
+```sh
 adb logcat | grep $(adb shell ps | grep com.package.name | awk '{print $2}')
+```
 
-# Save logs to file
+### Save logs to file
 
+```sh
 adb logcat -d > logcat.txt
-\`\`\`
+```
 
-#### File Operations
+## File Operations
 
-\`\`\`sh
+### Pull file from device
 
-# Pull file from device
-
+```sh
 adb pull /sdcard/file.txt ./local_directory
+```
 
-# Push file to device
+### Push file to device
 
+```sh
 adb push local_file.txt /sdcard/
+```
 
-# List files
+### List files
 
+```sh
 adb shell ls /sdcard/
+```
 
-# Take screenshot
+### Take screenshot
 
+```sh
 adb shell screencap -p /sdcard/screenshot.png
 adb pull /sdcard/screenshot.png
+```
 
-# Record screen
+### Record screen
 
+```sh
 adb shell screenrecord /sdcard/demo.mp4
 adb pull /sdcard/demo.mp4
-\`\`\`
+```
 
-#### Network and Permissions
+## Network and Permissions
 
-\`\`\`sh
+### Grant permissions
 
-# Grant permissions
-
+```sh
 adb shell pm grant com.package.name android.permission.CAMERA
 adb shell pm grant com.package.name android.permission.ACCESS_FINE_LOCATION
+```
 
-# Revoke permissions
+### Revoke permissions
 
+```sh
 adb shell pm revoke com.package.name android.permission.CAMERA
+```
 
-# List app permissions
+### List app permissions
 
+```sh
 adb shell dumpsys package com.package.name | grep permission
-\`\`\`
+```
 
-#### React Native Specific
+## React Native Specific
 
-\`\`\`sh
+### Reload React Native app
 
-# Reload React Native app
-
+```sh
 adb shell input keyevent 82 # Open dev menu
 adb shell input text "RR" # Reload
+```
 
-# Reverse port for Metro bundler
+### Reverse port for Metro bundler
 
+```sh
 adb reverse tcp:8081 tcp:8081
+```
 
-# Open dev menu
+### Open dev menu
 
+```sh
 adb shell input keyevent 82
+```
 
-# Enable/Disable USB debugging
+### Enable/Disable USB debugging
 
+```sh
 adb shell settings put global development_settings_enabled 1
 adb shell settings put global adb_enabled 1
-\`\`\`
+```
 
-#### Build and Cache
+## Build and Cache
 
-\`\`\`sh
+### Clean build (from project root)
 
-# Clean build (from project root)
-
+```sh
 cd android && ./gradlew clean
 cd ..
+```
 
-# Clean and rebuild
+### Clean and rebuild
 
+```sh
 cd android && ./gradlew clean && cd .. && npm run android
+```
 
-# Clear watchman cache
+### Clear watchman cache
 
+```sh
 watchman watch-del-all
+```
 
-# Clear Metro cache
+### Clear Metro cache
 
+```sh
 npm start -- --reset-cache
+```
 
-# Full clean
+### Full clean
 
+```sh
 rm -rf node_modules
 rm -rf android/app/build
 rm -rf ios/build
 npm install
-\`\`\`
+```
 
 ## Contributing
 
@@ -404,4 +393,4 @@ To learn more about React Native, take a look at the following resources:
 - [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [\`@facebook/react-native\`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
