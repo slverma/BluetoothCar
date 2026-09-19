@@ -90,6 +90,7 @@ const VerticalTheme = ({
 
   const backgroundColor = isDarkMode ? '#000' : '#fff';
   const textColor = isDarkMode ? '#fff' : '#000';
+  const connectedColor = isDarkMode ? '#30D158' : '#248A3D';
 
   return (
     <View
@@ -110,11 +111,6 @@ const VerticalTheme = ({
           <Text style={[styles.title, { color: textColor }]}>
             Bluetooth Car Controller
           </Text>
-          {connectedDevice && (
-            <Text style={[styles.connectedDeviceText]}>
-              Connected to: {connectedDevice.name}
-            </Text>
-          )}
         </View>
         <TouchableOpacity
           style={[
@@ -164,7 +160,14 @@ const VerticalTheme = ({
       <View
         style={[styles.footer, { paddingBottom: safeAreaInsets.bottom + 20 }]}
       >
-        <Text style={[styles.footerText, { color: textColor }]}>
+        <Text
+          style={[
+            styles.footerText,
+            connectedDevice
+              ? [styles.footerTextConnected, { color: connectedColor }]
+              : { color: textColor },
+          ]}
+        >
           {connectedDevice
             ? 'Connected - Ready to control'
             : 'Connect to bluetooth to control'}
@@ -203,12 +206,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  connectedDeviceText: {
-    fontSize: 14,
-    marginTop: 8,
-    color: '#34C759',
-    fontWeight: '600',
   },
   connectionButton: {
     position: 'absolute',
@@ -276,6 +273,10 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 14,
     opacity: 0.7,
+  },
+  footerTextConnected: {
+    fontWeight: '600',
+    opacity: 1,
   },
 });
 
