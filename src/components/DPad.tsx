@@ -48,7 +48,7 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
             onPressIn={() => handlePress('UP')}
             onPressOut={() => handlePress('STOP')}
           >
-            <View style={[styles.iconWrapper, styles.iconUp]}>
+            <View style={styles.iconUp}>
               <ArrowIcon direction="UP" />
             </View>
           </TouchableOpacity>
@@ -59,7 +59,7 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
             onPressIn={() => handlePress('RIGHT')}
             onPressOut={() => handlePress('STOP')}
           >
-            <View style={[styles.iconWrapper, styles.iconRight]}>
+            <View style={styles.iconRight}>
               <ArrowIcon direction="RIGHT" />
             </View>
           </TouchableOpacity>
@@ -70,7 +70,7 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
             onPressIn={() => handlePress('LEFT')}
             onPressOut={() => handlePress('STOP')}
           >
-            <View style={[styles.iconWrapper, styles.iconLeft]}>
+            <View style={styles.iconLeft}>
               <ArrowIcon direction="LEFT" />
             </View>
           </TouchableOpacity>
@@ -81,7 +81,7 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
             onPressIn={() => handlePress('DOWN')}
             onPressOut={() => handlePress('STOP')}
           >
-            <View style={[styles.iconWrapper, styles.iconDown]}>
+            <View style={styles.iconDown}>
               <ArrowIcon direction="DOWN" />
             </View>
           </TouchableOpacity>
@@ -100,6 +100,14 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
     </View>
   );
 };
+// Arrows sit on their axis, halfway between the STOP button (radius 70) and
+// the rim (radius 150). Each icon is centered in its quadrant of the 45deg
+// rotated grid, so it is shifted toward the center by this diagonal offset and
+// counter-rotated to stay upright.
+const GRID_SIZE = 450;
+const ARROW_RADIUS = 110;
+const ARROW_OFFSET = GRID_SIZE / 4 - ARROW_RADIUS * Math.SQRT1_2;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -132,25 +140,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  iconWrapper: {
-    // Counter-rotate the icon container so they face Up/Down/Left/Right
-    transform: [{ rotate: '-45deg' }],
-  },
   iconUp: {
-    marginTop: '50%',
-    marginLeft: 100,
-  },
-  iconLeft: {
-    marginLeft: 100,
-    marginTop: -100,
+    transform: [
+      { translateX: ARROW_OFFSET },
+      { translateY: ARROW_OFFSET },
+      { rotate: '-45deg' },
+    ],
   },
   iconRight: {
-    marginRight: '50%',
-    marginTop: 100,
+    transform: [
+      { translateX: -ARROW_OFFSET },
+      { translateY: ARROW_OFFSET },
+      { rotate: '-45deg' },
+    ],
   },
   iconDown: {
-    marginBottom: '50%',
-    marginLeft: -100,
+    transform: [
+      { translateX: -ARROW_OFFSET },
+      { translateY: -ARROW_OFFSET },
+      { rotate: '-45deg' },
+    ],
+  },
+  iconLeft: {
+    transform: [
+      { translateX: ARROW_OFFSET },
+      { translateY: -ARROW_OFFSET },
+      { rotate: '-45deg' },
+    ],
   },
   okButton: {
     position: 'absolute',

@@ -121,29 +121,31 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                           <Icon name="check" size={16} color={textColor} />
                         )}
                       </View>
-                      <View style={styles.deviceIdRow}>
-                        <Text style={styles.deviceId}>{item.id}</Text>
+                      <View style={styles.deviceMetaRow}>
+                        <Text style={styles.deviceId} numberOfLines={1}>
+                          {item.id}
+                        </Text>
+                        {isConnected && (
+                          <View style={[styles.badge, styles.connectedBadge]}>
+                            <Text style={styles.badgeText}>Connected</Text>
+                          </View>
+                        )}
                         {item.deviceType && (
                           <View
                             style={[
-                              styles.deviceTypeBadge,
+                              styles.badge,
                               item.deviceType === 'CLASSIC'
                                 ? styles.classicBadge
                                 : styles.bleBadge,
                             ]}
                           >
-                            <Text style={styles.deviceTypeText}>
+                            <Text style={styles.badgeText}>
                               {item.deviceType}
                             </Text>
                           </View>
                         )}
                       </View>
                     </View>
-                    {isConnected && (
-                      <View style={styles.connectedBadge}>
-                        <Text style={styles.connectedText}>Connected</Text>
-                      </View>
-                    )}
                   </TouchableOpacity>
                 );
               }}
@@ -243,20 +245,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  deviceIdRow: {
+  deviceMetaRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
   },
   deviceId: {
     fontSize: 12,
     color: '#888',
     flex: 1,
   },
-  deviceTypeBadge: {
+  badge: {
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 8,
+  },
+  badgeText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: '600',
   },
   classicBadge: {
     backgroundColor: '#FF9500',
@@ -264,21 +271,8 @@ const styles = StyleSheet.create({
   bleBadge: {
     backgroundColor: '#007AFF',
   },
-  deviceTypeText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: '600',
-  },
   connectedBadge: {
     backgroundColor: '#34C759',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  connectedText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '600',
   },
   emptyState: {
     paddingVertical: 40,
