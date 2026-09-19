@@ -9,11 +9,13 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
+import { showNotConnectedToast } from '../utils/toast';
 import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
 import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
 import DPad from './DPad';
+import PulseRing from './PulseRing';
 
 type VerticalThemeProps = {
   onOpenSettings: () => void;
@@ -42,6 +44,8 @@ const VerticalTheme = ({
     console.log('Forward');
     if (connectedDevice) {
       await sendData(commands.forward);
+    } else {
+      showNotConnectedToast();
     }
   };
 
@@ -49,6 +53,8 @@ const VerticalTheme = ({
     console.log('Backward');
     if (connectedDevice) {
       await sendData(commands.backward);
+    } else {
+      showNotConnectedToast();
     }
   };
 
@@ -56,6 +62,8 @@ const VerticalTheme = ({
     console.log('Left');
     if (connectedDevice) {
       await sendData(commands.left);
+    } else {
+      showNotConnectedToast();
     }
   };
 
@@ -63,6 +71,8 @@ const VerticalTheme = ({
     console.log('Right');
     if (connectedDevice) {
       await sendData(commands.right);
+    } else {
+      showNotConnectedToast();
     }
   };
 
@@ -70,6 +80,8 @@ const VerticalTheme = ({
     console.log('Horn on');
     if (connectedDevice) {
       await sendData(commands.hornOn);
+    } else {
+      showNotConnectedToast();
     }
   };
   const hornOff = async () => {
@@ -85,12 +97,19 @@ const VerticalTheme = ({
     if (connectedDevice) {
       await sendData(newLightState ? commands.lightOn : commands.lightOff);
       setIsLightOn(newLightState);
+    } else {
+      showNotConnectedToast();
     }
   };
 
   const backgroundColor = isDarkMode ? '#000' : '#fff';
   const textColor = isDarkMode ? '#fff' : '#000';
   const connectedColor = isDarkMode ? '#30D158' : '#248A3D';
+  const accentColor = isDarkMode ? '#0A84FF' : '#007AFF';
+  const pillColor = isDarkMode ? '#2C2C2E' : '#F2F2F7';
+  const dimColor = isDarkMode
+    ? 'rgba(0, 0, 0, 0.6)'
+    : 'rgba(255, 255, 255, 0.6)';
 
   return (
     <View
@@ -119,6 +138,7 @@ const VerticalTheme = ({
           ]}
           onPress={onOpenDevices}
         >
+          <PulseRing active={!connectedDevice && !isScanning} />
           {isScanning ? (
             <RefreshIcon color="#fff" spinAnim={spinAnim} />
           ) : (
@@ -133,7 +153,6 @@ const VerticalTheme = ({
             style={[styles.extraButton, styles.hornButton]}
             onPressIn={hornOn}
             onPressOut={hornOff}
-            disabled={!connectedDevice}
           >
             <Icon name="horn" size={40} color="#fff" />
           </TouchableOpacity>
@@ -143,7 +162,6 @@ const VerticalTheme = ({
               isLightOn ? styles.lightButtonOn : styles.lightButton,
             ]}
             onPress={handleLightToggle}
-            disabled={!connectedDevice}
           >
             <Icon name="bulb" size={40} color={isLightOn ? '#000' : '#fff'} />
           </TouchableOpacity>
@@ -156,22 +174,35 @@ const VerticalTheme = ({
           onStop={handleStop}
           onCenter={handleStop}
         />
+        {!connectedDevice && (
+          <View
+            pointerEvents="none"
+            style={[styles.disabledOverlay, { backgroundColor: dimColor }]}
+          />
+        )}
       </View>
       <View
         style={[styles.footer, { paddingBottom: safeAreaInsets.bottom + 20 }]}
       >
-        <Text
-          style={[
-            styles.footerText,
-            connectedDevice
-              ? [styles.footerTextConnected, { color: connectedColor }]
-              : { color: textColor },
-          ]}
-        >
-          {connectedDevice
-            ? 'Connected - Ready to control'
-            : 'Connect to bluetooth to control'}
-        </Text>
+        <View style={styles.footerContent}>
+          {connectedDevice ? (
+            <Text style={[styles.footerText, { color: connectedColor }]}>
+              Connected - Ready to control
+            </Text>
+          ) : (
+            <TouchableOpacity
+              style={[styles.connectPill, { backgroundColor: pillColor }]}
+              onPress={onOpenDevices}
+              accessibilityRole="button"
+              accessibilityLabel="Connect a device"
+            >
+              <BluetoothIcon color={accentColor} size={16} />
+              <Text style={[styles.connectPillText, { color: textColor }]}>
+                Connect a device
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -235,6 +266,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
+  // Dim with a translucent overlay: opacity on the container makes Android
+  // draw it offscreen, which distorts rounded/clipped views like the D-pad.
+  disabledOverlay: {
+    ...StyleSheet.absoluteFillObject,
+  },
   extraControlsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -270,13 +306,29 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
   },
+  // Both states fit in this height, so the layout doesn't shift on connect.
+  footerContent: {
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  connectPill: {
+    height: 36,
+    paddingHorizontal: 16,
+    borderRadius: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  connectPillText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
   footerText: {
     fontSize: 14,
-    opacity: 0.7,
-  },
-  footerTextConnected: {
+    lineHeight: 20,
     fontWeight: '600',
-    opacity: 1,
+    textAlign: 'center',
   },
 });
 

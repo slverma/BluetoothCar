@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
+import { showNotConnectedToast } from '../utils/toast';
 import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
 import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
+import PulseRing from './PulseRing';
 
 type HorizontalThemeProps = {
   onOpenSettings: () => void;
@@ -86,21 +88,23 @@ const HorizontalTheme = ({
     };
   }, [isAccelerating, isBraking, speed, handleStop]);
 
-  // Send movement commands based on speed and steering
+  // Send movement commands based on speed and steering. Steering also works
+  // while stationary, so the car can turn in place.
   useEffect(() => {
-    if (speed > 0 && connectedDevice) {
-      let command: string | null = null;
-
+    let command: string | null = null;
+    if (connectedDevice) {
       if (steeringDirection === 'left') {
         command = commands.left;
       } else if (steeringDirection === 'right') {
         command = commands.right;
-      } else {
+      } else if (speed > 0) {
         command = commands.forward;
       }
+    }
 
+    if (command) {
       // Only send if command changed
-      if (command && command !== lastCommandRef.current) {
+      if (command !== lastCommandRef.current) {
         sendData(command);
         lastCommandRef.current = command;
       }
@@ -117,6 +121,10 @@ const HorizontalTheme = ({
   ]);
 
   const handleAcceleratorPress = () => {
+    if (!connectedDevice) {
+      showNotConnectedToast();
+      return;
+    }
     setIsAccelerating(true);
   };
 
@@ -125,6 +133,10 @@ const HorizontalTheme = ({
   };
 
   const handleBrakePress = () => {
+    if (!connectedDevice) {
+      showNotConnectedToast();
+      return;
+    }
     setIsBraking(true);
   };
 
@@ -133,6 +145,10 @@ const HorizontalTheme = ({
   };
 
   const handleSteeringPress = (direction: 'left' | 'right') => {
+    if (!connectedDevice) {
+      showNotConnectedToast();
+      return;
+    }
     setSteeringDirection(direction);
   };
 
@@ -145,12 +161,16 @@ const HorizontalTheme = ({
     if (connectedDevice) {
       await sendData(newLightState ? commands.lightOn : commands.lightOff);
       setIsLightOn(newLightState);
+    } else {
+      showNotConnectedToast();
     }
   };
 
   const hornOn = async () => {
     if (connectedDevice) {
       await sendData(commands.hornOn);
+    } else {
+      showNotConnectedToast();
     }
   };
 
@@ -163,9 +183,13 @@ const HorizontalTheme = ({
   const backgroundColor = isDarkMode ? '#000' : '#fff';
   const textColor = isDarkMode ? '#fff' : '#000';
   const controlColor = isDarkMode ? '#1C1C1E' : '#F2F2F7';
+  const accentColor = isDarkMode ? '#0A84FF' : '#007AFF';
+  const dimColor = isDarkMode
+    ? 'rgba(0, 0, 0, 0.6)'
+    : 'rgba(255, 255, 255, 0.6)';
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, { backgroundColor }]}>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.settingsButton}
@@ -176,10 +200,16 @@ const HorizontalTheme = ({
 
         <View style={styles.titleContainer}>
           <Icon name="car" size={18} color={textColor} />
-          <Text style={[styles.connectedDeviceText, { color: textColor }]}>
+          <Text
+            style={[
+              styles.connectedDeviceText,
+              { color: connectedDevice ? textColor : accentColor },
+            ]}
+            numberOfLines={1}
+          >
             {connectedDevice
               ? `Connected: ${connectedDevice.name}`
-              : 'Not Connected'}
+              : 'Tap the Bluetooth icon to connect a device'}
           </Text>
         </View>
 
@@ -190,6 +220,7 @@ const HorizontalTheme = ({
           ]}
           onPress={onOpenDevices}
         >
+          <PulseRing active={!connectedDevice && !isScanning} />
           {isScanning ? (
             <RefreshIcon color="#fff" spinAnim={spinAnim} />
           ) : (
@@ -198,7 +229,7 @@ const HorizontalTheme = ({
         </TouchableOpacity>
       </View>
 
-      <View style={[styles.container, { backgroundColor }]}>
+      <View style={styles.container}>
         {/* Left side - Steering */}
         <View style={styles.leftSection}>
           <View style={styles.steeringContainer}>
@@ -210,7 +241,6 @@ const HorizontalTheme = ({
               ]}
               onPressIn={() => handleSteeringPress('left')}
               onPressOut={handleSteeringRelease}
-              disabled={!connectedDevice || speed === 0}
             >
               <Icon name="arrow-left" size={30} color={textColor} />
               <Text style={[styles.steeringLabel, { color: textColor }]}>
@@ -226,7 +256,6 @@ const HorizontalTheme = ({
               ]}
               onPressIn={() => handleSteeringPress('right')}
               onPressOut={handleSteeringRelease}
-              disabled={!connectedDevice || speed === 0}
             >
               <Icon name="arrow-right" size={30} color={textColor} />
               <Text style={[styles.steeringLabel, { color: textColor }]}>
@@ -262,7 +291,6 @@ const HorizontalTheme = ({
               style={[styles.utilityButton, styles.hornButton]}
               onPressIn={hornOn}
               onPressOut={hornOff}
-              disabled={!connectedDevice}
             >
               <Icon name="horn" size={24} color="#fff" />
               <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
@@ -276,7 +304,6 @@ const HorizontalTheme = ({
                 isLightOn ? styles.lightButtonOn : styles.lightButton,
               ]}
               onPress={handleLightToggle}
-              disabled={!connectedDevice}
             >
               <Icon name="bulb" size={24} color={isLightOn ? '#000' : '#fff'} />
               <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
@@ -295,7 +322,6 @@ const HorizontalTheme = ({
             ]}
             onPressIn={handleAcceleratorPress}
             onPressOut={handleAcceleratorRelease}
-            disabled={!connectedDevice}
           >
             <Icon name="arrow-up" size={36} color="#fff" />
             <Text style={styles.pedalLabel}>GAS</Text>
@@ -305,12 +331,17 @@ const HorizontalTheme = ({
             style={[styles.brakeButton, isBraking && styles.brakeButtonActive]}
             onPressIn={handleBrakePress}
             onPressOut={handleBrakeRelease}
-            disabled={!connectedDevice}
           >
             <Icon name="arrow-down" size={36} color="#fff" />
             <Text style={styles.pedalLabel}>BRAKE</Text>
           </TouchableOpacity>
         </View>
+        {!connectedDevice && (
+          <View
+            pointerEvents="none"
+            style={[styles.disabledOverlay, { backgroundColor: dimColor }]}
+          />
+        )}
       </View>
     </View>
   );
@@ -356,6 +387,11 @@ const styles = StyleSheet.create({
   },
   connectionButtonConnected: {
     backgroundColor: '#34C759',
+  },
+  // Dim with a translucent overlay: opacity on the container makes Android
+  // draw it offscreen, which distorts rounded/clipped views like the D-pad.
+  disabledOverlay: {
+    ...StyleSheet.absoluteFillObject,
   },
   container: {
     flex: 1,
