@@ -58,7 +58,8 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
     }
   };
 
-  const backgroundColor = isDarkMode ? '#000' : '#fff';
+  // Same dark surface as the settings sheet, so it lifts off the black screen.
+  const backgroundColor = isDarkMode ? '#1C1C1E' : '#fff';
   const textColor = isDarkMode ? '#fff' : '#000';
 
   return (
@@ -76,7 +77,10 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
             </Text>
             <View style={styles.headerActions}>
               <TouchableOpacity
-                style={styles.rescanIconButton}
+                style={[
+                  styles.rescanIconButton,
+                  isDarkMode && styles.rescanIconButtonDark,
+                ]}
                 onPress={() => {
                   startScan();
                 }}
@@ -108,8 +112,11 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                   <TouchableOpacity
                     style={[
                       styles.deviceItem,
-                      { borderBottomColor: isDarkMode ? '#333' : '#ddd' },
+                      { borderBottomColor: isDarkMode ? '#3A3A3C' : '#ddd' },
                       isConnected && styles.deviceItemConnected,
+                      isConnected &&
+                        isDarkMode &&
+                        styles.deviceItemConnectedDark,
                     ]}
                     onPress={() => handleDevicePress(item)}
                     disabled={isConnecting || isConnected}
@@ -146,14 +153,22 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                     </View>
                     {isConnected && (
                       <TouchableOpacity
-                        style={styles.disconnectButton}
+                        style={[
+                          styles.disconnectButton,
+                          isDarkMode && styles.disconnectButtonDark,
+                        ]}
                         onPress={handleDisconnectPress}
                         accessibilityRole="button"
                         accessibilityLabel={`Disconnect from ${
                           item.name || item.localName || 'device'
                         }`}
                       >
-                        <Text style={styles.disconnectButtonText}>
+                        <Text
+                          style={[
+                            styles.disconnectButtonText,
+                            isDarkMode && styles.disconnectButtonTextDark,
+                          ]}
+                        >
                           Disconnect
                         </Text>
                       </TouchableOpacity>
@@ -226,6 +241,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 122, 255, 0.15)',
     overflow: 'hidden',
   },
+  rescanIconButtonDark: {
+    backgroundColor: 'rgba(10, 132, 255, 0.25)',
+  },
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -244,6 +262,9 @@ const styles = StyleSheet.create({
   },
   deviceItemConnected: {
     backgroundColor: 'rgba(52, 199, 89, 0.1)',
+  },
+  deviceItemConnectedDark: {
+    backgroundColor: 'rgba(48, 209, 88, 0.18)',
   },
   deviceInfo: {
     flex: 1,
@@ -290,6 +311,12 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 1,
     borderColor: '#FF3B30',
+  },
+  disconnectButtonDark: {
+    borderColor: '#FF453A',
+  },
+  disconnectButtonTextDark: {
+    color: '#FF453A',
   },
   disconnectButtonText: {
     color: '#FF3B30',
