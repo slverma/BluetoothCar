@@ -40,19 +40,21 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
 
   const handleDevicePress = async (device: any) => {
     try {
-      if (connectedDevice?.id === device.id) {
-        // Disconnect if already connected
-        await disconnectDevice();
-        Alert.alert('Disconnected', `Disconnected from ${device.name}`);
-      } else {
-        // Connect to new device
-        await connectToDevice(device);
-        Alert.alert('Connected', `Connected to ${device.name}`);
-        setShowModal(false);
-      }
+      await connectToDevice(device);
+      Alert.alert('Connected', `Connected to ${device.name}`);
+      setShowModal(false);
     } catch (error) {
       Alert.alert('Error', 'Failed to connect to device');
       console.error('Connection error:', error);
+    }
+  };
+
+  const handleDisconnectPress = async () => {
+    try {
+      await disconnectDevice();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to disconnect from device');
+      console.error('Disconnect error:', error);
     }
   };
 
@@ -110,7 +112,8 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                       isConnected && styles.deviceItemConnected,
                     ]}
                     onPress={() => handleDevicePress(item)}
-                    disabled={isConnecting}
+                    disabled={isConnecting || isConnected}
+                    activeOpacity={isConnected ? 1 : 0.2}
                   >
                     <View style={styles.deviceInfo}>
                       <View style={styles.deviceNameRow}>
@@ -125,11 +128,6 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                         <Text style={styles.deviceId} numberOfLines={1}>
                           {item.id}
                         </Text>
-                        {isConnected && (
-                          <View style={[styles.badge, styles.connectedBadge]}>
-                            <Text style={styles.badgeText}>Connected</Text>
-                          </View>
-                        )}
                         {item.deviceType && (
                           <View
                             style={[
@@ -146,6 +144,20 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                         )}
                       </View>
                     </View>
+                    {isConnected && (
+                      <TouchableOpacity
+                        style={styles.disconnectButton}
+                        onPress={handleDisconnectPress}
+                        accessibilityRole="button"
+                        accessibilityLabel={`Disconnect from ${
+                          item.name || item.localName || 'device'
+                        }`}
+                      >
+                        <Text style={styles.disconnectButtonText}>
+                          Disconnect
+                        </Text>
+                      </TouchableOpacity>
+                    )}
                   </TouchableOpacity>
                 );
               }}
@@ -225,6 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 12,
     paddingVertical: 15,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
@@ -271,8 +284,17 @@ const styles = StyleSheet.create({
   bleBadge: {
     backgroundColor: '#007AFF',
   },
-  connectedBadge: {
-    backgroundColor: '#34C759',
+  disconnectButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#FF3B30',
+  },
+  disconnectButtonText: {
+    color: '#FF3B30',
+    fontSize: 12,
+    fontWeight: '600',
   },
   emptyState: {
     paddingVertical: 40,
