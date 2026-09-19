@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,11 +6,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BTDevices from './BTDevices';
 import BluetoothIcon from './icons/BluetoothIcon';
 import RefreshIcon from './icons/RefreshIcon';
 import SettingsIcon from './icons/SettingsIcon';
+import Icon from './icons/Icon';
 import { useBluetooth } from './contexts/BluetoothContext';
 import { useSettings } from './contexts/SettingsContext';
 import DPad from './components/DPad';
@@ -20,12 +22,22 @@ import HorizontalTheme from './components/HorizontalTheme';
 export default function BTPanel() {
   const safeAreaInsets = useSafeAreaInsets();
   const isDarkMode = useColorScheme() === 'dark';
-  const { connectedDevice, spinAnim, sendData } = useBluetooth();
+  const { connectedDevice, isScanning, spinAnim, sendData } = useBluetooth();
   const { commands, theme } = useSettings();
 
   const [showModal, setShowModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [isLightOn, setIsLightOn] = useState(false);
+
+  // Each theme owns its orientation; unlocking would leave a vertical layout
+  // stuck in landscape if the phone is still held sideways.
+  useEffect(() => {
+    if (theme === 'horizontal') {
+      Orientation.lockToLandscape();
+    } else {
+      Orientation.lockToPortrait();
+    }
+  }, [theme]);
 
   console.log('BTPanel rendering with theme:', theme);
   console.log('Theme type:', typeof theme);
@@ -113,25 +125,17 @@ export default function BTPanel() {
           </TouchableOpacity>
 
           <View style={styles.titleContainerHorizontal}>
-            {connectedDevice ? (
-              <Text
-                style={[
-                  styles.connectedDeviceTextHorizontal,
-                  { color: isDarkMode ? '#fff' : '#000' },
-                ]}
-              >
-                🚙 Connected: {connectedDevice.name}
-              </Text>
-            ) : (
-              <Text
-                style={[
-                  styles.connectedDeviceTextHorizontal,
-                  { color: isDarkMode ? '#fff' : '#000' },
-                ]}
-              >
-                🚙 Not Connected
-              </Text>
-            )}
+            <Icon name="car" size={18} color={isDarkMode ? '#fff' : '#000'} />
+            <Text
+              style={[
+                styles.connectedDeviceTextHorizontal,
+                { color: isDarkMode ? '#fff' : '#000' },
+              ]}
+            >
+              {connectedDevice
+                ? `Connected: ${connectedDevice.name}`
+                : 'Not Connected'}
+            </Text>
           </View>
 
           <TouchableOpacity
@@ -141,14 +145,11 @@ export default function BTPanel() {
             ]}
             onPress={() => setShowModal(true)}
           >
-            <View style={styles.iconContainer}>
-              <View style={styles.refreshIconBorder}>
-                <RefreshIcon color="#fff" spinAnim={spinAnim} />
-              </View>
-              <View style={styles.bluetoothIconCenter}>
-                <BluetoothIcon color="#fff" size={20} />
-              </View>
-            </View>
+            {isScanning ? (
+              <RefreshIcon color="#fff" spinAnim={spinAnim} />
+            ) : (
+              <BluetoothIcon color="#fff" size={24} />
+            )}
           </TouchableOpacity>
         </View>
         <HorizontalTheme />
@@ -172,7 +173,7 @@ export default function BTPanel() {
           <SettingsIcon color={textColor} size={28} />
         </TouchableOpacity>
         <View style={styles.titleContainer}>
-          <Text style={[styles.title, { color: textColor }]}>🚙</Text>
+          <Icon name="car" size={32} color={textColor} />
           <Text style={[styles.title, { color: textColor }]}>
             Bluetooth Car Controller
           </Text>
@@ -191,14 +192,11 @@ export default function BTPanel() {
             setShowModal(true);
           }}
         >
-          <View style={styles.iconContainer}>
-            <View style={styles.refreshIconBorder}>
-              <RefreshIcon color="#fff" spinAnim={spinAnim} />
-            </View>
-            <View style={styles.bluetoothIconCenter}>
-              <BluetoothIcon color="#fff" size={20} />
-            </View>
-          </View>
+          {isScanning ? (
+            <RefreshIcon color="#fff" spinAnim={spinAnim} />
+          ) : (
+            <BluetoothIcon color="#fff" size={24} />
+          )}
         </TouchableOpacity>
       </View>
 
@@ -216,7 +214,7 @@ export default function BTPanel() {
             onPressOut={hornOff}
             disabled={!connectedDevice}
           >
-            <Text style={styles.extraButtonText}>📯</Text>
+            <Icon name="horn" size={40} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -226,7 +224,7 @@ export default function BTPanel() {
             onPress={handleLightToggle}
             disabled={!connectedDevice}
           >
-            <Text style={styles.extraButtonText}>💡</Text>
+            <Icon name="bulb" size={40} color={isLightOn ? '#000' : '#fff'} />
           </TouchableOpacity>
         </View>
         <DPad
@@ -238,7 +236,9 @@ export default function BTPanel() {
           onCenter={handleStop}
         />
       </View>
-      <View style={[styles.footer, { paddingBottom: safeAreaInsets.bottom }]}>
+      <View
+        style={[styles.footer, { paddingBottom: safeAreaInsets.bottom + 20 }]}
+      >
         <Text style={[styles.footerText, { color: textColor }]}>
           {connectedDevice
             ? 'Connected - Ready to control'
@@ -306,23 +306,6 @@ const styles = StyleSheet.create({
   },
   connectionButtonConnected: {
     backgroundColor: '#34C759',
-  },
-  iconContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 48,
-    height: 48,
-  },
-  refreshIconBorder: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bluetoothIconCenter: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   modalOverlay: {
     flex: 1,
@@ -435,9 +418,6 @@ const styles = StyleSheet.create({
   },
   lightButtonOn: {
     backgroundColor: '#34C759',
-  },
-  extraButtonText: {
-    fontSize: 40,
   },
   extraButtonLabel: {
     fontSize: 14,
@@ -686,7 +666,10 @@ const styles = StyleSheet.create({
   },
   titleContainerHorizontal: {
     flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
   },
   connectedDeviceTextHorizontal: {
     fontSize: 14,

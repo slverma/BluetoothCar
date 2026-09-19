@@ -6,9 +6,9 @@ import {
   Text,
   useColorScheme,
 } from 'react-native';
-import Orientation from 'react-native-orientation-locker';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
+import Icon from '../icons/Icon';
 
 const HorizontalTheme = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -22,16 +22,6 @@ const HorizontalTheme = () => {
   const [steeringDirection, setSteeringDirection] = useState<
     'left' | 'right' | null
   >(null);
-
-  // Lock orientation to landscape when component mounts
-  useEffect(() => {
-    Orientation.lockToLandscape();
-
-    return () => {
-      // Unlock orientation when component unmounts
-      Orientation.unlockAllOrientations();
-    };
-  }, []);
 
   // Speed management
   const speedIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -178,7 +168,7 @@ const HorizontalTheme = () => {
             onPressOut={handleSteeringRelease}
             disabled={!connectedDevice || speed === 0}
           >
-            <Text style={[styles.steeringText, { color: textColor }]}>⬅️</Text>
+            <Icon name="arrow-left" size={30} color={textColor} />
             <Text style={[styles.steeringLabel, { color: textColor }]}>
               LEFT
             </Text>
@@ -194,7 +184,7 @@ const HorizontalTheme = () => {
             onPressOut={handleSteeringRelease}
             disabled={!connectedDevice || speed === 0}
           >
-            <Text style={[styles.steeringText, { color: textColor }]}>➡️</Text>
+            <Icon name="arrow-right" size={30} color={textColor} />
             <Text style={[styles.steeringLabel, { color: textColor }]}>
               RIGHT
             </Text>
@@ -228,7 +218,7 @@ const HorizontalTheme = () => {
             onPressOut={hornOff}
             disabled={!connectedDevice}
           >
-            <Text style={styles.utilityButtonText}>📯</Text>
+            <Icon name="horn" size={24} color="#fff" />
             <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
               HORN
             </Text>
@@ -242,7 +232,7 @@ const HorizontalTheme = () => {
             onPress={handleLightToggle}
             disabled={!connectedDevice}
           >
-            <Text style={styles.utilityButtonText}>💡</Text>
+            <Icon name="bulb" size={24} color={isLightOn ? '#000' : '#fff'} />
             <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
               LIGHT
             </Text>
@@ -261,7 +251,7 @@ const HorizontalTheme = () => {
           onPressOut={handleAcceleratorRelease}
           disabled={!connectedDevice}
         >
-          <Text style={styles.pedalText}>⬆️</Text>
+          <Icon name="arrow-up" size={36} color="#fff" />
           <Text style={styles.pedalLabel}>GAS</Text>
         </TouchableOpacity>
 
@@ -271,7 +261,7 @@ const HorizontalTheme = () => {
           onPressOut={handleBrakeRelease}
           disabled={!connectedDevice}
         >
-          <Text style={styles.pedalText}>⬇️</Text>
+          <Icon name="arrow-down" size={36} color="#fff" />
           <Text style={styles.pedalLabel}>BRAKE</Text>
         </TouchableOpacity>
       </View>
@@ -283,8 +273,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 20,
-    gap: 20,
+    padding: 16,
+    gap: 16,
   },
   leftSection: {
     flex: 1,
@@ -300,17 +290,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 20,
+    gap: 12,
   },
   steeringContainer: {
-    gap: 30,
+    gap: 16,
     width: '100%',
     alignItems: 'center',
   },
   steeringButton: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 88,
+    height: 88,
+    borderRadius: 44,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 3,
@@ -320,58 +310,52 @@ const styles = StyleSheet.create({
     backgroundColor: '#4CAF50',
     borderColor: '#45a049',
   },
-  steeringText: {
-    fontSize: 40,
-  },
   steeringLabel: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
-    marginTop: 5,
+    marginTop: 3,
   },
   speedContainer: {
     alignItems: 'center',
     width: '100%',
   },
   speedLabel: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  speedValue: {
+    fontSize: 48,
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  speedValue: {
-    fontSize: 64,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
   speedBarContainer: {
     width: '100%',
-    height: 30,
+    height: 20,
     backgroundColor: '#333',
-    borderRadius: 15,
+    borderRadius: 10,
     overflow: 'hidden',
   },
   speedBar: {
     height: '100%',
-    borderRadius: 15,
+    borderRadius: 10,
   },
   utilityButtons: {
     flexDirection: 'row',
-    gap: 20,
+    gap: 16,
   },
   utilityButton: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
   },
-  utilityButtonText: {
-    fontSize: 32,
-  },
   utilityButtonLabel: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: 'bold',
-    marginTop: 2,
+    marginTop: 1,
   },
   hornButton: {
     backgroundColor: '#FF9800',
@@ -386,13 +370,13 @@ const styles = StyleSheet.create({
     borderColor: '#FFA000',
   },
   acceleratorButton: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     backgroundColor: '#4CAF50',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 4,
+    borderWidth: 3,
     borderColor: '#388E3C',
   },
   acceleratorButtonActive: {
@@ -400,27 +384,24 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.95 }],
   },
   brakeButton: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     backgroundColor: '#f44336',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 4,
+    borderWidth: 3,
     borderColor: '#c62828',
   },
   brakeButtonActive: {
     backgroundColor: '#da190b',
     transform: [{ scale: 0.95 }],
   },
-  pedalText: {
-    fontSize: 48,
-  },
   pedalLabel: {
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: 'bold',
     color: '#fff',
-    marginTop: 5,
+    marginTop: 3,
   },
 });
 

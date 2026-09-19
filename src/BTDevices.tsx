@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useBluetooth } from './contexts/BluetoothContext';
 import RefreshIcon from './icons/RefreshIcon';
+import Icon from './icons/Icon';
 
 type BTDevicesProps = {
   showModal: boolean;
@@ -82,9 +83,9 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                 <RefreshIcon color={textColor} spinAnim={spinAnim} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => setShowModal(false)}>
-                <Text style={[styles.closeButton, { color: textColor }]}>
-                  ✕
-                </Text>
+                <View style={styles.closeButton}>
+                  <Icon name="close" size={24} color={textColor} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -112,10 +113,14 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                     disabled={isConnecting}
                   >
                     <View style={styles.deviceInfo}>
-                      <Text style={[styles.deviceName, { color: textColor }]}>
-                        {item.name || item.localName || 'Unnamed Device'}
-                        {isConnected && ' ✓'}
-                      </Text>
+                      <View style={styles.deviceNameRow}>
+                        <Text style={[styles.deviceName, { color: textColor }]}>
+                          {item.name || item.localName || 'Unnamed Device'}
+                        </Text>
+                        {isConnected && (
+                          <Icon name="check" size={16} color={textColor} />
+                        )}
+                      </View>
                       <View style={styles.deviceIdRow}>
                         <Text style={styles.deviceId}>{item.id}</Text>
                         {item.deviceType && (
@@ -212,8 +217,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   closeButton: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    paddingHorizontal: 4,
   },
   deviceItem: {
     flexDirection: 'row',
@@ -229,10 +233,15 @@ const styles = StyleSheet.create({
   deviceInfo: {
     flex: 1,
   },
+  deviceNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 4,
+  },
   deviceName: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 4,
   },
   deviceIdRow: {
     flexDirection: 'row',

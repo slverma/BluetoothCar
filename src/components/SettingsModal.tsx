@@ -10,7 +10,9 @@ import {
   useColorScheme,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSettings, ThemeType } from '../contexts/SettingsContext';
+import { useSettings, ThemeType, CommandSettings } from '../contexts/SettingsContext';
+import Icon, { IconName } from '../icons/Icon';
+import SettingsIcon from '../icons/SettingsIcon';
 
 interface SettingsModalProps {
   visible: boolean;
@@ -20,7 +22,7 @@ interface SettingsModalProps {
 interface ThemeOption {
   value: ThemeType;
   label: string;
-  icon: string;
+  icon: IconName;
   description: string;
 }
 
@@ -28,13 +30,13 @@ const THEME_OPTIONS: ThemeOption[] = [
   {
     value: 'vertical',
     label: 'Vertical',
-    icon: '📱',
+    icon: 'phone',
     description: 'Classic D-Pad controls',
   },
   {
     value: 'horizontal',
     label: 'Horizontal',
-    icon: '🏎️',
+    icon: 'car',
     description: 'Car-style controls',
   },
   // Add more themes here in the future:
@@ -52,16 +54,19 @@ const THEME_OPTIONS: ThemeOption[] = [
   // },
 ];
 
-const commandLabels = {
-  forward: '⬆️ Forward',
-  backward: '⬇️ Backward',
-  left: '⬅️ Left',
-  right: '➡️ Right',
-  stop: '⏹️ Stop',
-  hornOn: '📯 Horn On',
-  hornOff: '🔇 Horn Off',
-  lightOn: '💡 Light On',
-  lightOff: '🌑 Light Off',
+const commandLabels: Record<
+  keyof CommandSettings,
+  { icon: IconName; label: string }
+> = {
+  forward: { icon: 'arrow-up', label: 'Forward' },
+  backward: { icon: 'arrow-down', label: 'Backward' },
+  left: { icon: 'arrow-left', label: 'Left' },
+  right: { icon: 'arrow-right', label: 'Right' },
+  stop: { icon: 'stop', label: 'Stop' },
+  hornOn: { icon: 'horn', label: 'Horn On' },
+  hornOff: { icon: 'horn-off', label: 'Horn Off' },
+  lightOn: { icon: 'bulb', label: 'Light On' },
+  lightOff: { icon: 'bulb-off', label: 'Light Off' },
 };
 
 export default function SettingsModal({
@@ -153,13 +158,14 @@ export default function SettingsModal({
             bounces={true}
           >
             <View style={styles.modalHeader}>
-              <Text style={[styles.modalTitle, { color: textColor }]}>
-                ⚙️ Command Settings
-              </Text>
-              <TouchableOpacity onPress={onClose}>
-                <Text style={[styles.closeButton, { color: textColor }]}>
-                  ✕
+              <View style={styles.titleRow}>
+                <SettingsIcon color={textColor} size={26} />
+                <Text style={[styles.modalTitle, { color: textColor }]}>
+                  Command Settings
                 </Text>
+              </View>
+              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                <Icon name="close" size={28} color={textColor} />
               </TouchableOpacity>
             </View>
 
@@ -169,9 +175,12 @@ export default function SettingsModal({
 
             {/* Theme Selection */}
             <View style={styles.themeSection}>
-              <Text style={[styles.sectionTitle, { color: textColor }]}>
-                🎨 Theme
-              </Text>
+              <View style={styles.sectionTitleRow}>
+                <Icon name="palette" size={20} color={textColor} />
+                <Text style={[styles.sectionTitle, { color: textColor }]}>
+                  Theme
+                </Text>
+              </View>
               <Text style={[styles.themeSectionSubtitle, { color: textColor }]}>
                 Choose your preferred control layout
               </Text>
@@ -196,11 +205,19 @@ export default function SettingsModal({
                   >
                     {editedTheme === themeOption.value && (
                       <View style={styles.themeCheckmark}>
-                        <Text style={styles.themeCheckmarkText}>✓</Text>
+                        <Icon name="check" size={16} color="#007AFF" />
                       </View>
                     )}
                     <View style={styles.themeIconContainer}>
-                      <Text style={styles.themeIcon}>{themeOption.icon}</Text>
+                      <Icon
+                        name={themeOption.icon}
+                        size={40}
+                        color={
+                          editedTheme === themeOption.value
+                            ? '#fff'
+                            : textColor
+                        }
+                      />
                     </View>
                     <Text
                       style={[
@@ -225,18 +242,28 @@ export default function SettingsModal({
               </ScrollView>
             </View>
 
-            <Text style={[styles.sectionTitle, { color: textColor }]}>
-              📝 Commands
-            </Text>
+            <View style={styles.sectionTitleRow}>
+              <Icon name="list" size={20} color={textColor} />
+              <Text style={[styles.sectionTitle, { color: textColor }]}>
+                Commands
+              </Text>
+            </View>
 
             <View style={styles.commandsList}>
               {(
                 Object.keys(commandLabels) as Array<keyof typeof commandLabels>
               ).map(key => (
                 <View key={key} style={styles.commandItem}>
-                  <Text style={[styles.commandLabel, { color: textColor }]}>
-                    {commandLabels[key]}
-                  </Text>
+                  <View style={styles.commandLabelContainer}>
+                    <Icon
+                      name={commandLabels[key].icon}
+                      size={18}
+                      color={textColor}
+                    />
+                    <Text style={[styles.commandLabel, { color: textColor }]}>
+                      {commandLabels[key].label}
+                    </Text>
+                  </View>
                   <TextInput
                     style={[
                       styles.commandInput,
@@ -309,13 +336,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
   modalTitle: {
     fontSize: 24,
     fontWeight: 'bold',
   },
   closeButton: {
-    fontSize: 28,
-    fontWeight: '300',
     paddingHorizontal: 8,
   },
   description: {
@@ -327,10 +357,15 @@ const styles = StyleSheet.create({
   themeSection: {
     marginBottom: 24,
   },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 12,
   },
   themeSectionSubtitle: {
     fontSize: 13,
@@ -366,16 +401,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  themeCheckmarkText: {
-    color: '#007AFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   themeIconContainer: {
     marginBottom: 8,
-  },
-  themeIcon: {
-    fontSize: 40,
   },
   themeCardTitle: {
     fontSize: 16,
@@ -401,11 +428,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     gap: 12,
   },
+  commandLabelContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    minWidth: 100,
+  },
   commandLabel: {
     fontSize: 14,
     fontWeight: '600',
-    flex: 1,
-    minWidth: 100,
   },
   commandInput: {
     fontSize: 16,
