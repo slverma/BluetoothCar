@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
+import Icon, { IconName } from '../icons/Icon';
 import {
   elevation,
   fullRadius,
@@ -14,11 +15,14 @@ import {
 type ButtonProps = {
   label: string;
   tone: 'error' | 'success';
+  // Optional leading icon, drawn in the button's on-color.
+  icon?: IconName;
   onPress: () => void;
   accessibilityLabel?: string;
 };
 
 const HEIGHT = 48;
+const ICON_SIZE = 18;
 // A label that doesn't fit shrinks to label-medium (12/14) rather than wrap.
 const LABEL_MIN_SCALE = 12 / 14;
 
@@ -28,6 +32,7 @@ const LABEL_MIN_SCALE = 12 / 14;
 export function Button({
   label,
   tone,
+  icon,
   onPress,
   accessibilityLabel,
 }: ButtonProps) {
@@ -46,8 +51,9 @@ export function Button({
         tone === 'success' && elevation[1],
       ]}
     >
+      {icon && <Icon name={icon} size={ICON_SIZE} color={onColor} />}
       <Text
-        style={[typography.labelLarge, { color: onColor }]}
+        style={[typography.labelLarge, styles.label, { color: onColor }]}
         numberOfLines={1}
         adjustsFontSizeToFit
         minimumFontScale={LABEL_MIN_SCALE}
@@ -96,8 +102,15 @@ const styles = StyleSheet.create({
     height: HEIGHT,
     paddingHorizontal: space[2],
     borderRadius: fullRadius(HEIGHT),
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: space[2],
+  },
+  // Lets the label shrink (see adjustsFontSizeToFit) instead of pushing the
+  // icon out of a narrow button.
+  label: {
+    flexShrink: 1,
   },
   outlined: {
     paddingHorizontal: 12,

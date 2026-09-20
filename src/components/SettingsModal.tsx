@@ -274,11 +274,13 @@ export default function SettingsModal({
               <Button
                 label="Reset to Defaults"
                 tone="error"
+                icon="restore"
                 onPress={handleReset}
               />
               <Button
                 label="Save Changes"
                 tone="success"
+                icon="check-circle"
                 onPress={handleSave}
               />
             </View>
