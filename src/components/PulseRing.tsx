@@ -4,16 +4,13 @@ import Svg, { Circle } from 'react-native-svg';
 
 type PulseRingProps = {
   active: boolean;
-  color?: string;
+  color: string;
 };
 
 // Expanding ring drawn over its (square) parent to draw attention to it.
 // Drawn as an SVG circle: a huge borderRadius can render as a distorted
 // polygon on some Android devices.
-export default function PulseRing({
-  active,
-  color = '#007AFF',
-}: PulseRingProps) {
+export default function PulseRing({ active, color }: PulseRingProps) {
   const progress = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {

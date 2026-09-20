@@ -3,10 +3,11 @@ import Svg, { Path } from 'react-native-svg';
 
 type ArrowIconProps = {
   direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
+  color: string;
 };
 
 // Custom SVG Icon Component
-const ArrowIcon = ({ direction }: ArrowIconProps) => {
+const ArrowIcon = ({ direction, color }: ArrowIconProps) => {
   const rotations = {
     UP: '0deg',
     RIGHT: '90deg',
@@ -19,7 +20,7 @@ const ArrowIcon = ({ direction }: ArrowIconProps) => {
       <Svg width="32" height="32" viewBox="0 0 24 24" fill="none">
         <Path
           d="M18 15L12 9L6 15"
-          stroke="white"
+          stroke={color}
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"

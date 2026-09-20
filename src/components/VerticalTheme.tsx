@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
 import { showNotConnectedToast } from '../utils/toast';
 import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
-import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
+import { space, typography, useColors } from '../theme';
+import ConnectionButton from './ConnectionButton';
 import DPad from './DPad';
-import PulseRing from './PulseRing';
+import IconButton from './IconButton';
+import Pill from './Pill';
+import { UtilityButton } from './ControlButtons';
 
 type VerticalThemeProps = {
   onOpenSettings: () => void;
@@ -27,8 +24,8 @@ const VerticalTheme = ({
   onOpenDevices,
 }: VerticalThemeProps) => {
   const safeAreaInsets = useSafeAreaInsets();
-  const isDarkMode = useColorScheme() === 'dark';
-  const { connectedDevice, isScanning, spinAnim, sendData } = useBluetooth();
+  const c = useColors();
+  const { connectedDevice, sendData } = useBluetooth();
   const { commands } = useSettings();
 
   const [isLightOn, setIsLightOn] = useState(false);
@@ -102,69 +99,67 @@ const VerticalTheme = ({
     }
   };
 
-  const backgroundColor = isDarkMode ? '#000' : '#fff';
-  const textColor = isDarkMode ? '#fff' : '#000';
-  const connectedColor = isDarkMode ? '#30D158' : '#248A3D';
-  const accentColor = isDarkMode ? '#0A84FF' : '#007AFF';
-  const pillColor = isDarkMode ? '#2C2C2E' : '#F2F2F7';
-  const dimColor = isDarkMode
-    ? 'rgba(0, 0, 0, 0.6)'
-    : 'rgba(255, 255, 255, 0.6)';
-
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor, paddingTop: safeAreaInsets.top },
-      ]}
-    >
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.settingsButton}
-          onPress={onOpenSettings}
+    <View style={[styles.container, { backgroundColor: c.surface }]}>
+      <View
+        style={[
+          styles.header,
+          {
+            backgroundColor: c.surfaceContainerLow,
+            paddingTop: safeAreaInsets.top + space[5],
+          },
+        ]}
+      >
+        <View
+          style={[
+            styles.settingsButton,
+            { top: safeAreaInsets.top + space[5] },
+          ]}
         >
-          <SettingsIcon color={textColor} size={28} />
-        </TouchableOpacity>
+          <IconButton
+            variant="ghost"
+            onPress={onOpenSettings}
+            accessibilityLabel="Settings"
+          >
+            {color => <SettingsIcon color={color} size={28} />}
+          </IconButton>
+        </View>
         <View style={styles.titleContainer}>
-          <Icon name="car" size={32} color={textColor} />
-          <Text style={[styles.title, { color: textColor }]}>
+          <Icon name="car" size={32} color={c.onSurface} />
+          <Text
+            style={[
+              typography.headlineSmall,
+              styles.title,
+              { color: c.onSurface },
+            ]}
+          >
             Bluetooth Car Controller
           </Text>
         </View>
-        <TouchableOpacity
+        <View
           style={[
             styles.connectionButton,
-            connectedDevice && styles.connectionButtonConnected,
+            { top: safeAreaInsets.top + space[5] },
           ]}
-          onPress={onOpenDevices}
         >
-          <PulseRing active={!connectedDevice && !isScanning} />
-          {isScanning ? (
-            <RefreshIcon color="#fff" spinAnim={spinAnim} />
-          ) : (
-            <BluetoothIcon color="#fff" size={24} />
-          )}
-        </TouchableOpacity>
+          <ConnectionButton onPress={onOpenDevices} />
+        </View>
       </View>
 
       <View style={styles.controlsContainer}>
         <View style={styles.extraControlsContainer}>
-          <TouchableOpacity
-            style={[styles.extraButton, styles.hornButton]}
+          <UtilityButton
+            kind="horn"
+            size={56}
             onPressIn={hornOn}
             onPressOut={hornOff}
-          >
-            <Icon name="horn" size={40} color="#fff" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.extraButton,
-              isLightOn ? styles.lightButtonOn : styles.lightButton,
-            ]}
+          />
+          <UtilityButton
+            kind="light"
+            size={56}
+            on={isLightOn}
             onPress={handleLightToggle}
-          >
-            <Icon name="bulb" size={40} color={isLightOn ? '#000' : '#fff'} />
-          </TouchableOpacity>
+          />
         </View>
         <DPad
           onUp={handleForwardPress}
@@ -177,30 +172,39 @@ const VerticalTheme = ({
         {!connectedDevice && (
           <View
             pointerEvents="none"
-            style={[styles.disabledOverlay, { backgroundColor: dimColor }]}
+            style={[
+              styles.disabledOverlay,
+              { backgroundColor: c.disabledScrim },
+            ]}
           />
         )}
       </View>
       <View
-        style={[styles.footer, { paddingBottom: safeAreaInsets.bottom + 20 }]}
+        style={[
+          styles.footer,
+          {
+            backgroundColor: c.surfaceContainerLow,
+            paddingBottom: safeAreaInsets.bottom + space[5],
+          },
+        ]}
       >
         <View style={styles.footerContent}>
           {connectedDevice ? (
-            <Text style={[styles.footerText, { color: connectedColor }]}>
-              Connected - Ready to control
+            <Text
+              style={[
+                typography.labelLarge,
+                styles.footerText,
+                { color: c.success },
+              ]}
+            >
+              Connected – Ready to control
             </Text>
           ) : (
-            <TouchableOpacity
-              style={[styles.connectPill, { backgroundColor: pillColor }]}
+            <Pill
+              label="Connect a device"
               onPress={onOpenDevices}
-              accessibilityRole="button"
-              accessibilityLabel="Connect a device"
-            >
-              <BluetoothIcon color={accentColor} size={16} />
-              <Text style={[styles.connectPillText, { color: textColor }]}>
-                Connect a device
-              </Text>
-            </TouchableOpacity>
+              renderIcon={color => <BluetoothIcon color={color} size={16} />}
+            />
           )}
         </View>
       </View>
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    padding: 20,
+    padding: space[5],
     paddingLeft: 70,
     paddingRight: 90,
     alignItems: 'center',
@@ -221,12 +225,7 @@ const styles = StyleSheet.create({
   },
   settingsButton: {
     position: 'absolute',
-    top: 20,
-    left: 20,
-    width: 44,
-    height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
+    left: space[5],
     zIndex: 10,
   },
   titleContainer: {
@@ -234,37 +233,17 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   connectionButton: {
     position: 'absolute',
-    top: 20,
-    right: 20,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  connectionButtonConnected: {
-    backgroundColor: '#34C759',
+    right: space[5],
   },
   controlsContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: space[5],
   },
   // Dim with a translucent overlay: opacity on the container makes Android
   // draw it offscreen, which distorts rounded/clipped views like the D-pad.
@@ -275,35 +254,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 80,
+    gap: space[9],
     marginTop: 30,
-  },
-  extraButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  hornButton: {
-    backgroundColor: '#FF9500',
-  },
-  lightButton: {
-    backgroundColor: '#FFD60A',
-  },
-  lightButtonOn: {
-    backgroundColor: '#34C759',
+    marginBottom: space[7],
   },
   footer: {
-    padding: 20,
+    padding: space[5],
     alignItems: 'center',
   },
   // Both states fit in this height, so the layout doesn't shift on connect.
@@ -312,22 +268,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  connectPill: {
-    height: 36,
-    paddingHorizontal: 16,
-    borderRadius: 18,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  connectPillText: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
   footerText: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '600',
     textAlign: 'center',
   },
 });
