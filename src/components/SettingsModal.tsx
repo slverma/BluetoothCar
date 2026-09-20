@@ -368,6 +368,7 @@ const styles = StyleSheet.create({
     minWidth: 80,
   },
   buttonContainer: {
+    flexDirection: 'row',
     gap: space[3],
     marginTop: space[2],
   },

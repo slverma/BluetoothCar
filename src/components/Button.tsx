@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import {
   elevation,
   fullRadius,
+  space,
   stateLayer,
   state,
   typography,
@@ -18,9 +19,12 @@ type ButtonProps = {
 };
 
 const HEIGHT = 48;
+// A label that doesn't fit shrinks to label-medium (12/14) rather than wrap.
+const LABEL_MIN_SCALE = 12 / 14;
 
-// Full-width Material 3 filled stadium button (the Settings sheet actions).
-// Success buttons sit at elevation 1; error stays flat.
+// Material 3 filled stadium button (the Settings sheet actions). Meant to share
+// a row with one other, so it takes an equal share of the width. Success
+// buttons sit at elevation 1; error stays flat.
 export function Button({
   label,
   tone,
@@ -42,7 +46,14 @@ export function Button({
         tone === 'success' && elevation[1],
       ]}
     >
-      <Text style={[typography.labelLarge, { color: onColor }]}>{label}</Text>
+      <Text
+        style={[typography.labelLarge, { color: onColor }]}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={LABEL_MIN_SCALE}
+      >
+        {label}
+      </Text>
     </Pressable>
   );
 }
@@ -81,7 +92,9 @@ export function OutlinedButton({
 
 const styles = StyleSheet.create({
   filled: {
+    flex: 1,
     height: HEIGHT,
+    paddingHorizontal: space[2],
     borderRadius: fullRadius(HEIGHT),
     alignItems: 'center',
     justifyContent: 'center',
