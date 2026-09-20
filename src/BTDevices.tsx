@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useBluetooth } from './contexts/BluetoothContext';
 import RefreshIcon from './icons/RefreshIcon';
+import Icon from './icons/Icon';
 
 type BTDevicesProps = {
   showModal: boolean;
@@ -39,23 +40,26 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
 
   const handleDevicePress = async (device: any) => {
     try {
-      if (connectedDevice?.id === device.id) {
-        // Disconnect if already connected
-        await disconnectDevice();
-        Alert.alert('Disconnected', `Disconnected from ${device.name}`);
-      } else {
-        // Connect to new device
-        await connectToDevice(device);
-        Alert.alert('Connected', `Connected to ${device.name}`);
-        setShowModal(false);
-      }
+      await connectToDevice(device);
+      Alert.alert('Connected', `Connected to ${device.name}`);
+      setShowModal(false);
     } catch (error) {
       Alert.alert('Error', 'Failed to connect to device');
       console.error('Connection error:', error);
     }
   };
 
-  const backgroundColor = isDarkMode ? '#000' : '#fff';
+  const handleDisconnectPress = async () => {
+    try {
+      await disconnectDevice();
+    } catch (error) {
+      Alert.alert('Error', 'Failed to disconnect from device');
+      console.error('Disconnect error:', error);
+    }
+  };
+
+  // Same dark surface as the settings sheet, so it lifts off the black screen.
+  const backgroundColor = isDarkMode ? '#1C1C1E' : '#fff';
   const textColor = isDarkMode ? '#fff' : '#000';
 
   return (
@@ -73,7 +77,10 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
             </Text>
             <View style={styles.headerActions}>
               <TouchableOpacity
-                style={styles.rescanIconButton}
+                style={[
+                  styles.rescanIconButton,
+                  isDarkMode && styles.rescanIconButtonDark,
+                ]}
                 onPress={() => {
                   startScan();
                 }}
@@ -82,9 +89,9 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                 <RefreshIcon color={textColor} spinAnim={spinAnim} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => setShowModal(false)}>
-                <Text style={[styles.closeButton, { color: textColor }]}>
-                  ✕
-                </Text>
+                <View style={styles.closeButton}>
+                  <Icon name="close" size={24} color={textColor} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -105,29 +112,39 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                   <TouchableOpacity
                     style={[
                       styles.deviceItem,
-                      { borderBottomColor: isDarkMode ? '#333' : '#ddd' },
+                      { borderBottomColor: isDarkMode ? '#3A3A3C' : '#ddd' },
                       isConnected && styles.deviceItemConnected,
+                      isConnected &&
+                        isDarkMode &&
+                        styles.deviceItemConnectedDark,
                     ]}
                     onPress={() => handleDevicePress(item)}
-                    disabled={isConnecting}
+                    disabled={isConnecting || isConnected}
+                    activeOpacity={isConnected ? 1 : 0.2}
                   >
                     <View style={styles.deviceInfo}>
-                      <Text style={[styles.deviceName, { color: textColor }]}>
-                        {item.name || item.localName || 'Unnamed Device'}
-                        {isConnected && ' ✓'}
-                      </Text>
-                      <View style={styles.deviceIdRow}>
-                        <Text style={styles.deviceId}>{item.id}</Text>
+                      <View style={styles.deviceNameRow}>
+                        <Text style={[styles.deviceName, { color: textColor }]}>
+                          {item.name || item.localName || 'Unnamed Device'}
+                        </Text>
+                        {isConnected && (
+                          <Icon name="check" size={16} color={textColor} />
+                        )}
+                      </View>
+                      <View style={styles.deviceMetaRow}>
+                        <Text style={styles.deviceId} numberOfLines={1}>
+                          {item.id}
+                        </Text>
                         {item.deviceType && (
                           <View
                             style={[
-                              styles.deviceTypeBadge,
+                              styles.badge,
                               item.deviceType === 'CLASSIC'
                                 ? styles.classicBadge
                                 : styles.bleBadge,
                             ]}
                           >
-                            <Text style={styles.deviceTypeText}>
+                            <Text style={styles.badgeText}>
                               {item.deviceType}
                             </Text>
                           </View>
@@ -135,9 +152,26 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                       </View>
                     </View>
                     {isConnected && (
-                      <View style={styles.connectedBadge}>
-                        <Text style={styles.connectedText}>Connected</Text>
-                      </View>
+                      <TouchableOpacity
+                        style={[
+                          styles.disconnectButton,
+                          isDarkMode && styles.disconnectButtonDark,
+                        ]}
+                        onPress={handleDisconnectPress}
+                        accessibilityRole="button"
+                        accessibilityLabel={`Disconnect from ${
+                          item.name || item.localName || 'device'
+                        }`}
+                      >
+                        <Text
+                          style={[
+                            styles.disconnectButtonText,
+                            isDarkMode && styles.disconnectButtonTextDark,
+                          ]}
+                        >
+                          Disconnect
+                        </Text>
+                      </TouchableOpacity>
                     )}
                   </TouchableOpacity>
                 );
@@ -207,18 +241,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 122, 255, 0.15)',
     overflow: 'hidden',
   },
+  rescanIconButtonDark: {
+    backgroundColor: 'rgba(10, 132, 255, 0.25)',
+  },
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   closeButton: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    paddingHorizontal: 4,
   },
   deviceItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 12,
     paddingVertical: 15,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
@@ -226,28 +263,41 @@ const styles = StyleSheet.create({
   deviceItemConnected: {
     backgroundColor: 'rgba(52, 199, 89, 0.1)',
   },
+  deviceItemConnectedDark: {
+    backgroundColor: 'rgba(48, 209, 88, 0.18)',
+  },
   deviceInfo: {
     flex: 1,
+  },
+  deviceNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 4,
   },
   deviceName: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 4,
   },
-  deviceIdRow: {
+  deviceMetaRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
   },
   deviceId: {
     fontSize: 12,
     color: '#888',
     flex: 1,
   },
-  deviceTypeBadge: {
+  badge: {
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 8,
+  },
+  badgeText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: '600',
   },
   classicBadge: {
     backgroundColor: '#FF9500',
@@ -255,19 +305,21 @@ const styles = StyleSheet.create({
   bleBadge: {
     backgroundColor: '#007AFF',
   },
-  deviceTypeText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: '600',
+  disconnectButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#FF3B30',
   },
-  connectedBadge: {
-    backgroundColor: '#34C759',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
+  disconnectButtonDark: {
+    borderColor: '#FF453A',
   },
-  connectedText: {
-    color: '#fff',
+  disconnectButtonTextDark: {
+    color: '#FF453A',
+  },
+  disconnectButtonText: {
+    color: '#FF3B30',
     fontSize: 12,
     fontWeight: '600',
   },
