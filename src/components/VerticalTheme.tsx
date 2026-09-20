@@ -6,13 +6,12 @@ import { useSettings } from '../contexts/SettingsContext';
 import { showNotConnectedToast } from '../utils/toast';
 import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
-import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
 import { space, typography, useColors } from '../theme';
+import ConnectionButton from './ConnectionButton';
 import DPad from './DPad';
 import IconButton from './IconButton';
 import Pill from './Pill';
-import PulseRing from './PulseRing';
 import { UtilityButton } from './ControlButtons';
 
 type VerticalThemeProps = {
@@ -26,7 +25,7 @@ const VerticalTheme = ({
 }: VerticalThemeProps) => {
   const safeAreaInsets = useSafeAreaInsets();
   const c = useColors();
-  const { connectedDevice, isScanning, spinAnim, sendData } = useBluetooth();
+  const { connectedDevice, sendData } = useBluetooth();
   const { commands } = useSettings();
 
   const [isLightOn, setIsLightOn] = useState(false);
@@ -143,26 +142,7 @@ const VerticalTheme = ({
             { top: safeAreaInsets.top + space[5] },
           ]}
         >
-          <IconButton
-            variant="filled"
-            tone={connectedDevice ? 'success' : 'primary'}
-            onPress={onOpenDevices}
-            accessibilityLabel="Devices"
-          >
-            {color => (
-              <>
-                <PulseRing
-                  active={!connectedDevice && !isScanning}
-                  color={c.primary}
-                />
-                {isScanning ? (
-                  <RefreshIcon color={color} spinAnim={spinAnim} />
-                ) : (
-                  <BluetoothIcon color={color} size={24} />
-                )}
-              </>
-            )}
-          </IconButton>
+          <ConnectionButton onPress={onOpenDevices} />
         </View>
       </View>
 

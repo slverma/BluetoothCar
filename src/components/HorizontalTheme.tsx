@@ -3,13 +3,11 @@ import { View, StyleSheet, Text } from 'react-native';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
 import { showNotConnectedToast } from '../utils/toast';
-import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
-import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
 import { space, typography, useColors, fullRadius } from '../theme';
+import ConnectionButton from './ConnectionButton';
 import IconButton from './IconButton';
-import PulseRing from './PulseRing';
 import { PedalButton, SteeringButton, UtilityButton } from './ControlButtons';
 
 type HorizontalThemeProps = {
@@ -22,7 +20,7 @@ const HorizontalTheme = ({
   onOpenDevices,
 }: HorizontalThemeProps) => {
   const c = useColors();
-  const { connectedDevice, isScanning, spinAnim, sendData } = useBluetooth();
+  const { connectedDevice, sendData } = useBluetooth();
   const { commands } = useSettings();
 
   const [speed, setSpeed] = useState(0);
@@ -204,27 +202,7 @@ const HorizontalTheme = ({
           </Text>
         </View>
 
-        <IconButton
-          variant="filled"
-          tone={connectedDevice ? 'success' : 'primary'}
-          size={44}
-          onPress={onOpenDevices}
-          accessibilityLabel="Devices"
-        >
-          {color => (
-            <>
-              <PulseRing
-                active={!connectedDevice && !isScanning}
-                color={c.primary}
-              />
-              {isScanning ? (
-                <RefreshIcon color={color} spinAnim={spinAnim} />
-              ) : (
-                <BluetoothIcon color={color} size={24} />
-              )}
-            </>
-          )}
-        </IconButton>
+        <ConnectionButton size={44} onPress={onOpenDevices} />
       </View>
 
       <View style={styles.container}>

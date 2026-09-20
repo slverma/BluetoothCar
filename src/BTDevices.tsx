@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
   Alert,
   FlatList,
   Modal,
@@ -50,6 +51,8 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
 
   const c = useColors();
   const safeAreaInsets = useSafeAreaInsets();
+  // Which row the user tapped, so only that one shows the loader.
+  const [connectingId, setConnectingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (showModal) {
@@ -58,6 +61,7 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
   }, [showModal, startScan]);
 
   const handleDevicePress = async (device: any) => {
+    setConnectingId(device.id);
     try {
       await connectToDevice(device);
       Alert.alert('Connected', `Connected to ${device.name}`);
@@ -65,6 +69,8 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
     } catch (error) {
       Alert.alert('Error', 'Failed to connect to device');
       console.error('Connection error:', error);
+    } finally {
+      setConnectingId(null);
     }
   };
 
@@ -105,7 +111,7 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                 onPress={() => {
                   startScan();
                 }}
-                disabled={isScanning}
+                disabled={isScanning || isConnecting}
                 accessibilityLabel="Scan for devices"
               >
                 {color => <RefreshIcon color={color} spinAnim={spinAnim} />}
@@ -135,10 +141,17 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
               ItemSeparatorComponent={Divider}
               renderItem={({ item }) => {
                 const isConnected = connectedDevice?.id === item.id;
-                const fill = isConnected
-                  ? c.successContainer
-                  : c.surfaceContainerHigh;
-                const onFill = isConnected ? c.onSuccessContainer : c.onSurface;
+                const isConnectingThis =
+                  isConnecting && connectingId === item.id;
+                let fill = c.surfaceContainerHigh;
+                let onFill = c.onSurface;
+                if (isConnected) {
+                  fill = c.successContainer;
+                  onFill = c.onSuccessContainer;
+                } else if (isConnectingThis) {
+                  fill = c.primaryContainer;
+                  onFill = c.onPrimaryContainer;
+                }
                 return (
                   <Pressable
                     style={({ pressed }) => [
@@ -152,6 +165,7 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                     ]}
                     onPress={() => handleDevicePress(item)}
                     disabled={isConnecting || isConnected}
+                    accessibilityState={{ busy: isConnectingThis }}
                   >
                     <View style={styles.deviceInfo}>
                       <View style={styles.deviceNameRow}>
@@ -178,6 +192,16 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
                         {item.deviceType && <Badge kind={item.deviceType} />}
                       </View>
                     </View>
+                    {isConnectingThis && (
+                      <View style={styles.connectingStatus}>
+                        <ActivityIndicator size={20} color={onFill} />
+                        <Text
+                          style={[typography.labelLarge, { color: onFill }]}
+                        >
+                          Connecting...
+                        </Text>
+                      </View>
+                    )}
                     {isConnected && (
                       <OutlinedButton
                         label="Disconnect"
@@ -230,6 +254,11 @@ const styles = StyleSheet.create({
     paddingVertical: space[4],
     paddingHorizontal: space[3],
     borderRadius: shape.md,
+  },
+  connectingStatus: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: space[2],
   },
   divider: {
     height: StyleSheet.hairlineWidth,
