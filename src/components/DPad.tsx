@@ -1,6 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
 import ArrowIcon from '../icons/ArrowIcon';
+import {
+  elevation,
+  fullRadius,
+  stateLayer,
+  typography,
+  useColors,
+  withAlpha,
+  state,
+} from '../theme';
+
 type Props = {
   onUp?: () => void;
   onDown?: () => void;
@@ -11,6 +21,7 @@ type Props = {
 };
 
 const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
+  const c = useColors();
   const handlePress = (direction: string) => {
     switch (direction) {
       case 'UP':
@@ -39,63 +50,102 @@ const DPad = ({ onCenter, onUp, onDown, onLeft, onRight, onStop }: Props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.outerCircle}>
+      <View
+        style={[
+          styles.outerCircle,
+          { backgroundColor: c.surfaceContainerHigh },
+          elevation[2],
+        ]}
+      >
         {/* The 2x2 Grid rotated 45 degrees to create the "X" dividers */}
         <View style={styles.rotatedGrid}>
           {/* Top Quadrant (Top-Left in the grid) */}
-          <TouchableOpacity
-            style={styles.quadrant}
+          <Pressable
+            style={({ pressed }) => [
+              styles.quadrant,
+              { borderColor: c.outlineVariant },
+              pressed && {
+                backgroundColor: withAlpha(c.onSurface, state.pressed),
+              },
+            ]}
             onPressIn={() => handlePress('UP')}
             onPressOut={() => handlePress('STOP')}
           >
             <View style={styles.iconUp}>
-              <ArrowIcon direction="UP" />
+              <ArrowIcon direction="UP" color={c.onSurface} />
             </View>
-          </TouchableOpacity>
+          </Pressable>
 
           {/* Right Quadrant (Top-Right in the grid) */}
-          <TouchableOpacity
-            style={styles.quadrant}
+          <Pressable
+            style={({ pressed }) => [
+              styles.quadrant,
+              { borderColor: c.outlineVariant },
+              pressed && {
+                backgroundColor: withAlpha(c.onSurface, state.pressed),
+              },
+            ]}
             onPressIn={() => handlePress('RIGHT')}
             onPressOut={() => handlePress('STOP')}
           >
             <View style={styles.iconRight}>
-              <ArrowIcon direction="RIGHT" />
+              <ArrowIcon direction="RIGHT" color={c.onSurface} />
             </View>
-          </TouchableOpacity>
+          </Pressable>
 
           {/* Left Quadrant (Bottom-Left in the grid) */}
-          <TouchableOpacity
-            style={styles.quadrant}
+          <Pressable
+            style={({ pressed }) => [
+              styles.quadrant,
+              { borderColor: c.outlineVariant },
+              pressed && {
+                backgroundColor: withAlpha(c.onSurface, state.pressed),
+              },
+            ]}
             onPressIn={() => handlePress('LEFT')}
             onPressOut={() => handlePress('STOP')}
           >
             <View style={styles.iconLeft}>
-              <ArrowIcon direction="LEFT" />
+              <ArrowIcon direction="LEFT" color={c.onSurface} />
             </View>
-          </TouchableOpacity>
+          </Pressable>
 
           {/* Bottom Quadrant (Bottom-Right in the grid) */}
-          <TouchableOpacity
-            style={styles.quadrant}
+          <Pressable
+            style={({ pressed }) => [
+              styles.quadrant,
+              { borderColor: c.outlineVariant },
+              pressed && {
+                backgroundColor: withAlpha(c.onSurface, state.pressed),
+              },
+            ]}
             onPressIn={() => handlePress('DOWN')}
             onPressOut={() => handlePress('STOP')}
           >
             <View style={styles.iconDown}>
-              <ArrowIcon direction="DOWN" />
+              <ArrowIcon direction="DOWN" color={c.onSurface} />
             </View>
-          </TouchableOpacity>
+          </Pressable>
         </View>
 
         {/* Center OK Button */}
-        <TouchableOpacity
-          style={styles.okButton}
+        <Pressable
+          style={({ pressed }) => [
+            styles.okButton,
+            {
+              backgroundColor: pressed
+                ? stateLayer(c.primary, c.onPrimary)
+                : c.primary,
+            },
+            elevation[3],
+          ]}
           onPressIn={() => handlePress('OK')}
           onPressOut={() => handlePress('STOP')}
-          activeOpacity={0.8}
         >
-          <Text style={styles.okText}>STOP</Text>
-        </TouchableOpacity>
+          <Text style={[typography.labelMedium, { color: c.onPrimary }]}>
+            STOP
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -117,13 +167,10 @@ const styles = StyleSheet.create({
   outerCircle: {
     width: 300,
     height: 300,
-    borderRadius: 150,
-    backgroundColor: '#435b66',
+    borderRadius: fullRadius(300),
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#2d3e46',
   },
   rotatedGrid: {
     width: 450, // Larger to ensure full coverage after rotation
@@ -135,7 +182,6 @@ const styles = StyleSheet.create({
   quadrant: {
     width: '50%',
     height: '50%',
-    borderColor: '#34495e',
     borderWidth: 1, // This creates the diagonal lines
     justifyContent: 'center',
     alignItems: 'center',
@@ -172,23 +218,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 140,
     height: 140,
-    borderRadius: 70,
-    backgroundColor: '#8da3af',
+    borderRadius: fullRadius(140),
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 4,
-    borderColor: '#435b66', // Matches outer circle to hide center borders
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-  okText: {
-    color: 'white',
-    fontSize: 26,
-    fontWeight: '600',
-    letterSpacing: 1,
   },
 });
 export default DPad;

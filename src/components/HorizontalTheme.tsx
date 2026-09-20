@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  useColorScheme,
-} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { useBluetooth } from '../contexts/BluetoothContext';
 import { useSettings } from '../contexts/SettingsContext';
 import { showNotConnectedToast } from '../utils/toast';
@@ -13,7 +7,10 @@ import BluetoothIcon from '../icons/BluetoothIcon';
 import Icon from '../icons/Icon';
 import RefreshIcon from '../icons/RefreshIcon';
 import SettingsIcon from '../icons/SettingsIcon';
+import { space, typography, useColors, fullRadius } from '../theme';
+import IconButton from './IconButton';
 import PulseRing from './PulseRing';
+import { PedalButton, SteeringButton, UtilityButton } from './ControlButtons';
 
 type HorizontalThemeProps = {
   onOpenSettings: () => void;
@@ -24,7 +21,7 @@ const HorizontalTheme = ({
   onOpenSettings,
   onOpenDevices,
 }: HorizontalThemeProps) => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const c = useColors();
   const { connectedDevice, isScanning, spinAnim, sendData } = useBluetooth();
   const { commands } = useSettings();
 
@@ -180,30 +177,24 @@ const HorizontalTheme = ({
     }
   };
 
-  const backgroundColor = isDarkMode ? '#000' : '#fff';
-  const textColor = isDarkMode ? '#fff' : '#000';
-  const controlColor = isDarkMode ? '#1C1C1E' : '#F2F2F7';
-  const accentColor = isDarkMode ? '#0A84FF' : '#007AFF';
-  const dimColor = isDarkMode
-    ? 'rgba(0, 0, 0, 0.6)'
-    : 'rgba(255, 255, 255, 0.6)';
-
   return (
-    <View style={[styles.root, { backgroundColor }]}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.settingsButton}
+    <View style={[styles.root, { backgroundColor: c.surface }]}>
+      <View style={[styles.header, { backgroundColor: c.surfaceContainerLow }]}>
+        <IconButton
+          variant="ghost"
+          size={40}
           onPress={onOpenSettings}
+          accessibilityLabel="Settings"
         >
-          <SettingsIcon color={textColor} size={24} />
-        </TouchableOpacity>
+          {color => <SettingsIcon color={color} size={24} />}
+        </IconButton>
 
         <View style={styles.titleContainer}>
-          <Icon name="car" size={18} color={textColor} />
+          <Icon name="car" size={18} color={c.onSurface} />
           <Text
             style={[
-              styles.connectedDeviceText,
-              { color: connectedDevice ? textColor : accentColor },
+              typography.labelLarge,
+              { color: connectedDevice ? c.onSurface : c.primary },
             ]}
             numberOfLines={1}
           >
@@ -213,72 +204,81 @@ const HorizontalTheme = ({
           </Text>
         </View>
 
-        <TouchableOpacity
-          style={[
-            styles.connectionButton,
-            connectedDevice && styles.connectionButtonConnected,
-          ]}
+        <IconButton
+          variant="filled"
+          tone={connectedDevice ? 'success' : 'primary'}
+          size={44}
           onPress={onOpenDevices}
+          accessibilityLabel="Devices"
         >
-          <PulseRing active={!connectedDevice && !isScanning} />
-          {isScanning ? (
-            <RefreshIcon color="#fff" spinAnim={spinAnim} />
-          ) : (
-            <BluetoothIcon color="#fff" size={24} />
+          {color => (
+            <>
+              <PulseRing
+                active={!connectedDevice && !isScanning}
+                color={c.primary}
+              />
+              {isScanning ? (
+                <RefreshIcon color={color} spinAnim={spinAnim} />
+              ) : (
+                <BluetoothIcon color={color} size={24} />
+              )}
+            </>
           )}
-        </TouchableOpacity>
+        </IconButton>
       </View>
 
       <View style={styles.container}>
         {/* Left side - Steering */}
         <View style={styles.leftSection}>
           <View style={styles.steeringContainer}>
-            <TouchableOpacity
-              style={[
-                styles.steeringButton,
-                { backgroundColor: controlColor },
-                steeringDirection === 'left' && styles.steeringButtonActive,
-              ]}
+            <SteeringButton
+              direction="left"
+              active={steeringDirection === 'left'}
               onPressIn={() => handleSteeringPress('left')}
               onPressOut={handleSteeringRelease}
-            >
-              <Icon name="arrow-left" size={30} color={textColor} />
-              <Text style={[styles.steeringLabel, { color: textColor }]}>
-                LEFT
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.steeringButton,
-                { backgroundColor: controlColor },
-                steeringDirection === 'right' && styles.steeringButtonActive,
-              ]}
+            />
+            <SteeringButton
+              direction="right"
+              active={steeringDirection === 'right'}
               onPressIn={() => handleSteeringPress('right')}
               onPressOut={handleSteeringRelease}
-            >
-              <Icon name="arrow-right" size={30} color={textColor} />
-              <Text style={[styles.steeringLabel, { color: textColor }]}>
-                RIGHT
-              </Text>
-            </TouchableOpacity>
+            />
           </View>
         </View>
 
         {/* Center - Speed Display */}
         <View style={styles.centerSection}>
           <View style={styles.speedContainer}>
-            <Text style={[styles.speedLabel, { color: textColor }]}>SPEED</Text>
-            <Text style={[styles.speedValue, { color: textColor }]}>
+            <Text
+              style={[
+                typography.titleMedium,
+                styles.speedLabel,
+                { color: c.onSurface },
+              ]}
+            >
+              SPEED
+            </Text>
+            <Text
+              style={[
+                typography.displayMedium,
+                styles.speedValue,
+                { color: c.onSurface },
+              ]}
+            >
               {speed}
             </Text>
-            <View style={styles.speedBarContainer}>
+            <View
+              style={[
+                styles.speedBarContainer,
+                { backgroundColor: c.surfaceContainerHighest },
+              ]}
+            >
               <View
                 style={[
                   styles.speedBar,
                   {
                     width: `${speed}%`,
-                    backgroundColor: speed > 70 ? '#ff4444' : '#4CAF50',
+                    backgroundColor: speed > 70 ? c.error : c.success,
                   },
                 ]}
               />
@@ -287,59 +287,43 @@ const HorizontalTheme = ({
 
           {/* Utility buttons */}
           <View style={styles.utilityButtons}>
-            <TouchableOpacity
-              style={[styles.utilityButton, styles.hornButton]}
+            <UtilityButton
+              kind="horn"
+              size={64}
               onPressIn={hornOn}
               onPressOut={hornOff}
-            >
-              <Icon name="horn" size={24} color="#fff" />
-              <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
-                HORN
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.utilityButton,
-                isLightOn ? styles.lightButtonOn : styles.lightButton,
-              ]}
+            />
+            <UtilityButton
+              kind="light"
+              size={64}
+              on={isLightOn}
               onPress={handleLightToggle}
-            >
-              <Icon name="bulb" size={24} color={isLightOn ? '#000' : '#fff'} />
-              <Text style={[styles.utilityButtonLabel, { color: textColor }]}>
-                LIGHT
-              </Text>
-            </TouchableOpacity>
+            />
           </View>
         </View>
 
         {/* Right side - Accelerator & Brake */}
         <View style={styles.rightSection}>
-          <TouchableOpacity
-            style={[
-              styles.acceleratorButton,
-              isAccelerating && styles.acceleratorButtonActive,
-            ]}
+          <PedalButton
+            kind="gas"
+            active={isAccelerating}
             onPressIn={handleAcceleratorPress}
             onPressOut={handleAcceleratorRelease}
-          >
-            <Icon name="arrow-up" size={36} color="#fff" />
-            <Text style={styles.pedalLabel}>GAS</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.brakeButton, isBraking && styles.brakeButtonActive]}
+          />
+          <PedalButton
+            kind="brake"
+            active={isBraking}
             onPressIn={handleBrakePress}
             onPressOut={handleBrakeRelease}
-          >
-            <Icon name="arrow-down" size={36} color="#fff" />
-            <Text style={styles.pedalLabel}>BRAKE</Text>
-          </TouchableOpacity>
+          />
         </View>
         {!connectedDevice && (
           <View
             pointerEvents="none"
-            style={[styles.disabledOverlay, { backgroundColor: dimColor }]}
+            style={[
+              styles.disabledOverlay,
+              { backgroundColor: c.disabledScrim },
+            ]}
           />
         )}
       </View>
@@ -355,16 +339,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingHorizontal: space[4],
     height: 60,
-  },
-  settingsButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   titleContainer: {
     flex: 1,
@@ -372,21 +348,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
-  },
-  connectedDeviceText: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  connectionButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  connectionButtonConnected: {
-    backgroundColor: '#34C759',
   },
   // Dim with a translucent overlay: opacity on the container makes Android
   // draw it offscreen, which distorts rounded/clipped views like the D-pad.
@@ -396,8 +357,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 16,
-    gap: 16,
+    padding: space[4],
+    gap: space[4],
   },
   leftSection: {
     flex: 1,
@@ -413,118 +374,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 12,
+    gap: space[3],
   },
   steeringContainer: {
-    gap: 16,
+    gap: space[4],
     width: '100%',
     alignItems: 'center',
-  },
-  steeringButton: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: '#666',
-  },
-  steeringButtonActive: {
-    backgroundColor: '#4CAF50',
-    borderColor: '#45a049',
-  },
-  steeringLabel: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginTop: 3,
   },
   speedContainer: {
     alignItems: 'center',
     width: '100%',
   },
   speedLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: space[1],
   },
   speedValue: {
-    fontSize: 48,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
   speedBarContainer: {
     width: '100%',
     height: 20,
-    backgroundColor: '#333',
-    borderRadius: 10,
+    borderRadius: fullRadius(20),
     overflow: 'hidden',
   },
   speedBar: {
     height: '100%',
-    borderRadius: 10,
+    borderRadius: fullRadius(20),
   },
   utilityButtons: {
     flexDirection: 'row',
-    gap: 16,
-  },
-  utilityButton: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-  },
-  utilityButtonLabel: {
-    fontSize: 9,
-    fontWeight: 'bold',
-    marginTop: 1,
-  },
-  hornButton: {
-    backgroundColor: '#FF9800',
-    borderColor: '#F57C00',
-  },
-  lightButton: {
-    backgroundColor: '#757575',
-    borderColor: '#616161',
-  },
-  lightButtonOn: {
-    backgroundColor: '#FFC107',
-    borderColor: '#FFA000',
-  },
-  acceleratorButton: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: '#4CAF50',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: '#388E3C',
-  },
-  acceleratorButtonActive: {
-    backgroundColor: '#45a049',
-    transform: [{ scale: 0.95 }],
-  },
-  brakeButton: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: '#f44336',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: '#c62828',
-  },
-  brakeButtonActive: {
-    backgroundColor: '#da190b',
-    transform: [{ scale: 0.95 }],
-  },
-  pedalLabel: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 3,
+    gap: space[4],
   },
 });
 

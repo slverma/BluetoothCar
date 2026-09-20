@@ -4,15 +4,21 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
   ScrollView,
-  useColorScheme,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSettings, ThemeType, CommandSettings } from '../contexts/SettingsContext';
+import {
+  useSettings,
+  ThemeType,
+  CommandSettings,
+} from '../contexts/SettingsContext';
 import Icon, { IconName } from '../icons/Icon';
 import SettingsIcon from '../icons/SettingsIcon';
+import { elevation, shape, space, typography, useColors } from '../theme';
+import { Button } from './Button';
+import IconButton from './IconButton';
+import ThemeCard from './ThemeCard';
 
 interface SettingsModalProps {
   visible: boolean;
@@ -74,7 +80,7 @@ export default function SettingsModal({
   onClose,
 }: SettingsModalProps): JSX.Element {
   const safeAreaInsets = useSafeAreaInsets();
-  const isDarkMode = useColorScheme() === 'dark';
+  const c = useColors();
   const { commands, theme, updateCommand, updateTheme, resetToDefaults } =
     useSettings();
 
@@ -129,11 +135,6 @@ export default function SettingsModal({
     setEditedTheme('vertical');
   };
 
-  const backgroundColor = isDarkMode ? '#1C1C1E' : '#fff';
-  const textColor = isDarkMode ? '#fff' : '#000';
-  const inputBackgroundColor = isDarkMode ? '#2C2C2E' : '#F2F2F7';
-  const borderColor = isDarkMode ? '#3A3A3C' : '#E5E5EA';
-
   return (
     <Modal
       visible={visible}
@@ -141,14 +142,15 @@ export default function SettingsModal({
       transparent={true}
       onRequestClose={onClose}
     >
-      <View style={styles.modalOverlay}>
+      <View style={[styles.modalOverlay, { backgroundColor: c.scrim }]}>
         <View
           style={[
             styles.modalContent,
             {
-              backgroundColor,
+              backgroundColor: c.surfaceContainerHighest,
               paddingBottom: safeAreaInsets.bottom,
             },
+            elevation[3],
           ]}
         >
           <ScrollView
@@ -159,29 +161,47 @@ export default function SettingsModal({
           >
             <View style={styles.modalHeader}>
               <View style={styles.titleRow}>
-                <SettingsIcon color={textColor} size={26} />
-                <Text style={[styles.modalTitle, { color: textColor }]}>
+                <SettingsIcon color={c.onSurface} size={26} />
+                <Text
+                  style={[typography.headlineSmall, { color: c.onSurface }]}
+                >
                   Command Settings
                 </Text>
               </View>
-              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                <Icon name="close" size={28} color={textColor} />
-              </TouchableOpacity>
+              <IconButton
+                variant="ghost"
+                onPress={onClose}
+                accessibilityLabel="Close settings"
+              >
+                {color => <Icon name="close" size={28} color={color} />}
+              </IconButton>
             </View>
 
-            <Text style={[styles.description, { color: textColor }]}>
+            <Text
+              style={[
+                typography.bodyMedium,
+                styles.description,
+                { color: c.onSurfaceVariant },
+              ]}
+            >
               Configure the commands sent to your Bluetooth device
             </Text>
 
             {/* Theme Selection */}
             <View style={styles.themeSection}>
               <View style={styles.sectionTitleRow}>
-                <Icon name="palette" size={20} color={textColor} />
-                <Text style={[styles.sectionTitle, { color: textColor }]}>
+                <Icon name="palette" size={20} color={c.onSurface} />
+                <Text style={[typography.titleMedium, { color: c.onSurface }]}>
                   Theme
                 </Text>
               </View>
-              <Text style={[styles.themeSectionSubtitle, { color: textColor }]}>
+              <Text
+                style={[
+                  typography.bodyMedium,
+                  styles.themeSectionSubtitle,
+                  { color: c.onSurfaceVariant },
+                ]}
+              >
                 Choose your preferred control layout
               </Text>
               <ScrollView
@@ -190,61 +210,21 @@ export default function SettingsModal({
                 contentContainerStyle={styles.themeScrollContent}
               >
                 {THEME_OPTIONS.map(themeOption => (
-                  <TouchableOpacity
+                  <ThemeCard
                     key={themeOption.value}
-                    style={[
-                      styles.themeCard,
-                      {
-                        backgroundColor: inputBackgroundColor,
-                        borderColor: borderColor,
-                      },
-                      editedTheme === themeOption.value &&
-                        styles.themeCardActive,
-                    ]}
+                    label={themeOption.label}
+                    description={themeOption.description}
+                    icon={themeOption.icon}
+                    selected={editedTheme === themeOption.value}
                     onPress={() => setEditedTheme(themeOption.value)}
-                  >
-                    {editedTheme === themeOption.value && (
-                      <View style={styles.themeCheckmark}>
-                        <Icon name="check" size={16} color="#007AFF" />
-                      </View>
-                    )}
-                    <View style={styles.themeIconContainer}>
-                      <Icon
-                        name={themeOption.icon}
-                        size={40}
-                        color={
-                          editedTheme === themeOption.value
-                            ? '#fff'
-                            : textColor
-                        }
-                      />
-                    </View>
-                    <Text
-                      style={[
-                        styles.themeCardTitle,
-                        { color: textColor },
-                        editedTheme === themeOption.value &&
-                          styles.themeCardTitleActive,
-                      ]}
-                    >
-                      {themeOption.label}
-                    </Text>
-                    <Text
-                      style={[
-                        styles.themeCardDescription,
-                        { color: textColor },
-                      ]}
-                    >
-                      {themeOption.description}
-                    </Text>
-                  </TouchableOpacity>
+                  />
                 ))}
               </ScrollView>
             </View>
 
             <View style={styles.sectionTitleRow}>
-              <Icon name="list" size={20} color={textColor} />
-              <Text style={[styles.sectionTitle, { color: textColor }]}>
+              <Icon name="list" size={20} color={c.onSurface} />
+              <Text style={[typography.titleMedium, { color: c.onSurface }]}>
                 Commands
               </Text>
             </View>
@@ -258,19 +238,22 @@ export default function SettingsModal({
                     <Icon
                       name={commandLabels[key].icon}
                       size={18}
-                      color={textColor}
+                      color={c.onSurface}
                     />
-                    <Text style={[styles.commandLabel, { color: textColor }]}>
+                    <Text
+                      style={[typography.labelLarge, { color: c.onSurface }]}
+                    >
                       {commandLabels[key].label}
                     </Text>
                   </View>
                   <TextInput
                     style={[
+                      typography.bodyLarge,
                       styles.commandInput,
                       {
-                        backgroundColor: inputBackgroundColor,
-                        color: textColor,
-                        borderColor: borderColor,
+                        backgroundColor: c.surfaceContainer,
+                        color: c.onSurface,
+                        borderColor: c.outline,
                       },
                     ]}
                     value={editedCommands[key]}
@@ -278,7 +261,7 @@ export default function SettingsModal({
                       setEditedCommands({ ...editedCommands, [key]: text })
                     }
                     placeholder={`Enter ${key} command`}
-                    placeholderTextColor={isDarkMode ? '#8E8E93' : '#C7C7CC'}
+                    placeholderTextColor={c.onSurfaceVariant}
                     maxLength={20}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -288,19 +271,16 @@ export default function SettingsModal({
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={[styles.button, styles.resetButton]}
+              <Button
+                label="Reset to Defaults"
+                tone="error"
                 onPress={handleReset}
-              >
-                <Text style={styles.resetButtonText}>Reset to Defaults</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[styles.button, styles.saveButton]}
+              />
+              <Button
+                label="Save Changes"
+                tone="success"
                 onPress={handleSave}
-              >
-                <Text style={styles.saveButtonText}>Save Changes</Text>
-              </TouchableOpacity>
+              />
             </View>
           </ScrollView>
         </View>
@@ -312,13 +292,12 @@ export default function SettingsModal({
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: space[5],
   },
   modalContent: {
-    borderRadius: 20,
+    borderRadius: shape.xl,
     width: '100%',
     maxWidth: 600,
     maxHeight: '100%',
@@ -328,150 +307,68 @@ const styles = StyleSheet.create({
     maxHeight: '100%',
   },
   scrollContent: {
-    padding: 20,
+    padding: space[5],
   },
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: space[3],
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-  },
-  modalTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    paddingHorizontal: 8,
+    gap: space[2],
   },
   description: {
-    fontSize: 14,
-    opacity: 0.7,
-    marginBottom: 20,
-    lineHeight: 20,
+    marginBottom: space[5],
   },
   themeSection: {
-    marginBottom: 24,
+    marginBottom: space[6],
   },
   sectionTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    marginBottom: 12,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    gap: space[2],
+    marginBottom: space[3],
   },
   themeSectionSubtitle: {
-    fontSize: 13,
-    opacity: 0.6,
-    marginBottom: 12,
-    marginTop: -8,
+    marginBottom: space[3],
+    marginTop: -space[2],
   },
+  // Padding leaves room for the cards' elevation shadow, which the horizontal
+  // scroll view would otherwise clip.
   themeScrollContent: {
-    paddingVertical: 4,
-    gap: 12,
-  },
-  themeCard: {
-    width: 140,
-    paddingVertical: 20,
-    paddingHorizontal: 16,
-    borderRadius: 16,
-    borderWidth: 2,
-    alignItems: 'center',
-    position: 'relative',
-  },
-  themeCardActive: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
-  },
-  themeCheckmark: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  themeIconContainer: {
-    marginBottom: 8,
-  },
-  themeCardTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    marginBottom: 4,
-    textAlign: 'center',
-  },
-  themeCardTitleActive: {
-    color: '#fff',
-  },
-  themeCardDescription: {
-    fontSize: 12,
-    opacity: 0.7,
-    textAlign: 'center',
-    lineHeight: 16,
+    paddingVertical: space[2],
+    paddingHorizontal: space[1],
+    gap: space[3],
   },
   commandsList: {
-    marginBottom: 20,
+    marginBottom: space[5],
   },
   commandItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
-    gap: 12,
+    marginBottom: space[4],
+    gap: space[3],
   },
   commandLabelContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: space[2],
     minWidth: 100,
   },
-  commandLabel: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
   commandInput: {
-    fontSize: 16,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 8,
+    paddingVertical: space[2],
+    paddingHorizontal: space[4],
+    borderRadius: shape.sm,
     borderWidth: 1,
     flex: 1.5,
     minWidth: 80,
   },
   buttonContainer: {
-    gap: 12,
-    marginTop: 8,
-  },
-  button: {
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  resetButton: {
-    backgroundColor: '#FF3B30',
-  },
-  resetButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  saveButton: {
-    backgroundColor: '#34C759',
-  },
-  saveButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    gap: space[3],
+    marginTop: space[2],
   },
 });

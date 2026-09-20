@@ -3,19 +3,37 @@ import {
   Alert,
   FlatList,
   Modal,
+  Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  useColorScheme,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBluetooth } from './contexts/BluetoothContext';
+import Badge from './components/Badge';
+import { OutlinedButton } from './components/Button';
+import IconButton from './components/IconButton';
 import RefreshIcon from './icons/RefreshIcon';
 import Icon from './icons/Icon';
+import {
+  elevation,
+  shape,
+  space,
+  stateLayer,
+  typography,
+  useColors,
+} from './theme';
 
 type BTDevicesProps = {
   showModal: boolean;
   setShowModal: (visible: boolean) => void;
+};
+
+const Divider = () => {
+  const c = useColors();
+  return (
+    <View style={[styles.divider, { backgroundColor: c.outlineVariant }]} />
+  );
 };
 
 const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
@@ -30,7 +48,8 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
     disconnectDevice,
   } = useBluetooth();
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const c = useColors();
+  const safeAreaInsets = useSafeAreaInsets();
 
   useEffect(() => {
     if (showModal) {
@@ -58,10 +77,6 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
     }
   };
 
-  // Same dark surface as the settings sheet, so it lifts off the black screen.
-  const backgroundColor = isDarkMode ? '#1C1C1E' : '#fff';
-  const textColor = isDarkMode ? '#fff' : '#000';
-
   return (
     <Modal
       animationType="slide"
@@ -69,36 +84,47 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
       visible={showModal}
       onRequestClose={() => setShowModal(false)}
     >
-      <View style={styles.modalOverlay}>
-        <View style={[styles.modalContent, { backgroundColor }]}>
+      <View style={[styles.modalOverlay, { backgroundColor: c.scrim }]}>
+        <View
+          style={[
+            styles.modalContent,
+            {
+              backgroundColor: c.surfaceContainerHighest,
+              paddingBottom: space[5] + safeAreaInsets.bottom,
+            },
+            elevation[3],
+          ]}
+        >
           <View style={styles.modalHeader}>
-            <Text style={[styles.modalTitle, { color: textColor }]}>
+            <Text style={[typography.titleLarge, { color: c.onSurface }]}>
               Available Devices
             </Text>
             <View style={styles.headerActions}>
-              <TouchableOpacity
-                style={[
-                  styles.rescanIconButton,
-                  isDarkMode && styles.rescanIconButtonDark,
-                ]}
+              <IconButton
+                variant="tonal"
                 onPress={() => {
                   startScan();
                 }}
                 disabled={isScanning}
+                accessibilityLabel="Scan for devices"
               >
-                <RefreshIcon color={textColor} spinAnim={spinAnim} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setShowModal(false)}>
-                <View style={styles.closeButton}>
-                  <Icon name="close" size={24} color={textColor} />
-                </View>
-              </TouchableOpacity>
+                {color => <RefreshIcon color={color} spinAnim={spinAnim} />}
+              </IconButton>
+              <IconButton
+                variant="ghost"
+                onPress={() => setShowModal(false)}
+                accessibilityLabel="Close device list"
+              >
+                {color => <Icon name="close" size={24} color={color} />}
+              </IconButton>
             </View>
           </View>
 
           {devices.length === 0 ? (
             <View style={styles.emptyState}>
-              <Text style={[styles.emptyText, { color: textColor }]}>
+              <Text
+                style={[typography.bodyLarge, { color: c.onSurfaceVariant }]}
+              >
                 {isScanning ? 'Scanning for devices...' : 'No devices found'}
               </Text>
             </View>
@@ -106,74 +132,62 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
             <FlatList
               data={devices}
               keyExtractor={item => item.id}
+              ItemSeparatorComponent={Divider}
               renderItem={({ item }) => {
                 const isConnected = connectedDevice?.id === item.id;
+                const fill = isConnected
+                  ? c.successContainer
+                  : c.surfaceContainerHigh;
+                const onFill = isConnected ? c.onSuccessContainer : c.onSurface;
                 return (
-                  <TouchableOpacity
-                    style={[
+                  <Pressable
+                    style={({ pressed }) => [
                       styles.deviceItem,
-                      { borderBottomColor: isDarkMode ? '#3A3A3C' : '#ddd' },
-                      isConnected && styles.deviceItemConnected,
-                      isConnected &&
-                        isDarkMode &&
-                        styles.deviceItemConnectedDark,
+                      {
+                        backgroundColor:
+                          pressed && !isConnected
+                            ? stateLayer(fill, onFill)
+                            : fill,
+                      },
                     ]}
                     onPress={() => handleDevicePress(item)}
                     disabled={isConnecting || isConnected}
-                    activeOpacity={isConnected ? 1 : 0.2}
                   >
                     <View style={styles.deviceInfo}>
                       <View style={styles.deviceNameRow}>
-                        <Text style={[styles.deviceName, { color: textColor }]}>
+                        <Text
+                          style={[typography.titleMedium, { color: onFill }]}
+                        >
                           {item.name || item.localName || 'Unnamed Device'}
                         </Text>
                         {isConnected && (
-                          <Icon name="check" size={16} color={textColor} />
+                          <Icon name="check" size={16} color={onFill} />
                         )}
                       </View>
                       <View style={styles.deviceMetaRow}>
-                        <Text style={styles.deviceId} numberOfLines={1}>
+                        <Text
+                          style={[
+                            typography.labelMedium,
+                            styles.deviceId,
+                            { color: c.onSurfaceVariant },
+                          ]}
+                          numberOfLines={1}
+                        >
                           {item.id}
                         </Text>
-                        {item.deviceType && (
-                          <View
-                            style={[
-                              styles.badge,
-                              item.deviceType === 'CLASSIC'
-                                ? styles.classicBadge
-                                : styles.bleBadge,
-                            ]}
-                          >
-                            <Text style={styles.badgeText}>
-                              {item.deviceType}
-                            </Text>
-                          </View>
-                        )}
+                        {item.deviceType && <Badge kind={item.deviceType} />}
                       </View>
                     </View>
                     {isConnected && (
-                      <TouchableOpacity
-                        style={[
-                          styles.disconnectButton,
-                          isDarkMode && styles.disconnectButtonDark,
-                        ]}
+                      <OutlinedButton
+                        label="Disconnect"
                         onPress={handleDisconnectPress}
-                        accessibilityRole="button"
                         accessibilityLabel={`Disconnect from ${
                           item.name || item.localName || 'device'
                         }`}
-                      >
-                        <Text
-                          style={[
-                            styles.disconnectButtonText,
-                            isDarkMode && styles.disconnectButtonTextDark,
-                          ]}
-                        >
-                          Disconnect
-                        </Text>
-                      </TouchableOpacity>
+                      />
                     )}
-                  </TouchableOpacity>
+                  </Pressable>
                 );
               }}
             />
@@ -186,85 +200,40 @@ const BTDevices = ({ showModal, setShowModal }: BTDevicesProps) => {
 export default BTDevices;
 
 const styles = StyleSheet.create({
-  connectionButton: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  connectionIcon: {
-    fontSize: 24,
-  },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
   },
   modalContent: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingTop: 20,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    borderTopLeftRadius: shape.xl,
+    borderTopRightRadius: shape.xl,
+    paddingTop: space[5],
+    paddingHorizontal: space[5],
     maxHeight: '80%',
   },
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: space[5],
   },
   headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 15,
-  },
-  rescanIconButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 122, 255, 0.15)',
-    overflow: 'hidden',
-  },
-  rescanIconButtonDark: {
-    backgroundColor: 'rgba(10, 132, 255, 0.25)',
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    paddingHorizontal: 4,
+    gap: space[3],
   },
   deviceItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 12,
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    borderBottomWidth: 1,
+    gap: space[3],
+    paddingVertical: space[4],
+    paddingHorizontal: space[3],
+    borderRadius: shape.md,
   },
-  deviceItemConnected: {
-    backgroundColor: 'rgba(52, 199, 89, 0.1)',
-  },
-  deviceItemConnectedDark: {
-    backgroundColor: 'rgba(48, 209, 88, 0.18)',
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    marginVertical: space[1],
   },
   deviceInfo: {
     flex: 1,
@@ -272,12 +241,8 @@ const styles = StyleSheet.create({
   deviceNameRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    marginBottom: 4,
-  },
-  deviceName: {
-    fontSize: 16,
-    fontWeight: '600',
+    gap: space[1],
+    marginBottom: space[1],
   },
   deviceMetaRow: {
     flexDirection: 'row',
@@ -285,131 +250,10 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   deviceId: {
-    fontSize: 12,
-    color: '#888',
     flex: 1,
-  },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 8,
-  },
-  badgeText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: '600',
-  },
-  classicBadge: {
-    backgroundColor: '#FF9500',
-  },
-  bleBadge: {
-    backgroundColor: '#007AFF',
-  },
-  disconnectButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#FF3B30',
-  },
-  disconnectButtonDark: {
-    borderColor: '#FF453A',
-  },
-  disconnectButtonTextDark: {
-    color: '#FF453A',
-  },
-  disconnectButtonText: {
-    color: '#FF3B30',
-    fontSize: 12,
-    fontWeight: '600',
   },
   emptyState: {
-    paddingVertical: 40,
+    paddingVertical: space[8],
     alignItems: 'center',
-  },
-  emptyText: {
-    fontSize: 16,
-    opacity: 0.6,
-  },
-  scanButton: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  scanButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  closeModalButton: {
-    backgroundColor: '#f0f0f0',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  closeModalButtonText: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  controlsContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 5,
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  buttonText: {
-    fontSize: 40,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  buttonLabel: {
-    fontSize: 14,
-    color: '#fff',
-    marginTop: 5,
-    fontWeight: '600',
-  },
-  spacer: {
-    width: 40,
-  },
-  footer: {
-    padding: 20,
-    alignItems: 'center',
-  },
-  footerText: {
-    fontSize: 14,
-    opacity: 0.6,
-  },
-  device: {
-    padding: 8,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
   },
 });
