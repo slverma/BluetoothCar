@@ -165,7 +165,7 @@ export default function SettingsModal({
                 <Text
                   style={[typography.headlineSmall, { color: c.onSurface }]}
                 >
-                  Command Settings
+                   Settings
                 </Text>
               </View>
               <IconButton
@@ -177,15 +177,6 @@ export default function SettingsModal({
               </IconButton>
             </View>
 
-            <Text
-              style={[
-                typography.bodyMedium,
-                styles.description,
-                { color: c.onSurfaceVariant },
-              ]}
-            >
-              Configure the commands sent to your Bluetooth device
-            </Text>
 
             {/* Theme Selection */}
             <View style={styles.themeSection}>
@@ -228,6 +219,15 @@ export default function SettingsModal({
                 Commands
               </Text>
             </View>
+            <Text
+              style={[
+                typography.bodyMedium,
+                styles.description,
+                { color: c.onSurfaceVariant },
+              ]}
+            >
+              Configure the commands sent to your Bluetooth device
+            </Text>
 
             <View style={styles.commandsList}>
               {(
